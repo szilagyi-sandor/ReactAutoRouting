@@ -1,0 +1,29 @@
+.simpleLoader {
+  opacity: 0.8;
+  background-color: #eee;
+  height: 5px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .indicator {
+    background-color: #000;
+    width: 40%;
+    animation: loading 2s linear infinite;
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+  }
+}
+
+@keyframes loading {
+  from {
+    left: -40%;
+  }
+  to {
+    left: 100%;
+  }
+}
