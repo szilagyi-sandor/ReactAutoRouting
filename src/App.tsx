@@ -9,28 +9,30 @@ import { Link, Route, Switch } from "react-router-dom";
 import HomePage from "Pages/Home/HomePage";
 import Test1Page from "Pages/Test1/Test1Page";
 import NotFoundPage from "Pages/NotFound/NotFoundPage";
+import { Container } from "reactstrap";
 
 function App() {
   return (
     <div className="App">
       <ErrorBoundary>
         <Suspense fallback={<SimpleLoader />}>
-          <h1>ReactAutoRouting</h1>
-
           {/**TODO: remove */}
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
+          <Container>
+            <h1>ReactAutoRouting</h1>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
 
-            <li>
-              <Link to="/test1">Test</Link>
-            </li>
+              <li>
+                <Link to="/test1">Test</Link>
+              </li>
 
-            <li>
-              <Link to="/oops">Oops</Link>
-            </li>
-          </ul>
+              <li>
+                <Link to="/oops">Oops</Link>
+              </li>
+            </ul>
+          </Container>
 
           <Switch>
             <Route path="/" component={HomePage} exact />
