@@ -1,3 +1,5 @@
+@import "./Variables";
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -9,8 +11,8 @@ html {
     font-weight: 400;
     line-height: 1.5;
     text-align: left;
-    background: #000;
-    color: #fff;
+    background: $backgroundColor;
+    color: $color;
   }
 }
 
@@ -26,11 +28,25 @@ html {
 a {
   display: inline-block;
   text-decoration: none;
+  color: $primaryColor;
 
   &:hover,
   &:focus,
   &:active,
   &.active {
     text-decoration: underline;
+    color: $primaryColor;
   }
+}
+
+h1 {
+  margin: 0;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 20px 0;
 }

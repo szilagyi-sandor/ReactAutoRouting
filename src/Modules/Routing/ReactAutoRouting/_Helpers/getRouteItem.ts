@@ -1,15 +1,15 @@
-import { RouteItem } from "../_Interfaces/RouteItem";
+import { Route } from "../_Interfaces/Route";
 
 // This function gives back the item by reference.
-export const getRouteItemByKeys = (
-  obj: Record<string, RouteItem>,
+export const getRouteItem = (
+  obj: Record<string, Route>,
   keys: string[]
-): RouteItem | undefined => {
+): Route | undefined => {
   if (keys.length === 0) {
     return undefined;
   }
 
-  let output: RouteItem | undefined = obj[keys[0]];
+  let output: Route | undefined = obj[keys[0]];
 
   // We are skipping the first iteration, since we done it above.
   for (let i = 1; i < keys.length; i++) {

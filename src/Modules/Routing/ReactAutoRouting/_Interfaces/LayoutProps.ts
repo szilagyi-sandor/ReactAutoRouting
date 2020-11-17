@@ -1,2 +1,6 @@
 // TODO: add this properly (extends RouteMapperProps + add own if there's any)
-export interface LayoutProps {}
+
+import { RouteMapperProps } from "../RouteMapper/interfaces";
+
+// TODO: maybe not even needed
+export interface LayoutProps extends RouteMapperProps {}

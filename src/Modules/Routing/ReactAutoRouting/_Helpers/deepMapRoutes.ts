@@ -1,9 +1,8 @@
-import { RouteItem } from "../_Interfaces/RouteItem";
+import { Route } from "../_Interfaces/Route";
 
-// TODO: test the order of this
-export const deepMapRoutes = <T>(
-  routes: Record<string, RouteItem>,
-  mapperFunc: (routeItem: RouteItem, keys: string[], indexes: number[]) => T,
+export const deepMapRoutes = (
+  routes: Record<string, Route>,
+  mapperFunc: (routeItem: Route, keys: string[], indexes: number[]) => void,
   prevKeys: string[] = [],
   prevIndexes: number[] = []
 ) => {
