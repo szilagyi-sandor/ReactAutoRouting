@@ -1,6 +1,6 @@
 import { Route } from "../_Interfaces/Route";
 
-export const getFullRoutePaths = (route: Route): string[][] => {
+export const createFullRoutePaths = (route: Route): string[][] => {
   let paths: string[][] = [];
 
   if (route.parentsInfo) {

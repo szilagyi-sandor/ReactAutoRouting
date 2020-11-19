@@ -4,10 +4,10 @@ import "./SimpleLoader.scss";
 
 import { SimpleLoaderProps } from "./interfaces";
 
-export default function SimpleLoader({ loading }: SimpleLoaderProps) {
+export default function SimpleLoader({ loading, color }: SimpleLoaderProps) {
   return loading !== false ? (
     <div className="simpleLoader">
-      <div className="indicator">
+      <div className="indicator" style={{ backgroundColor: color }}>
         <span className="sr-only">loading</span>
       </div>
     </div>

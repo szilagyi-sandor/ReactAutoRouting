@@ -1,21 +1,15 @@
 @import "Assets/Scss/Variables";
 
-.adminLayout {
-  min-height: 100vh;
+.redLayout {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 
-  > .content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  > footer {
+  .layoutInfo {
     background-color: $secondaryBackgroundColor;
     padding: 15px 0;
 
-    .layoutInfo {
+    p {
       margin: 0;
       text-align: center;
       font-weight: 700;

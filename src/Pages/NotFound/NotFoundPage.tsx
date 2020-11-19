@@ -1,13 +1,19 @@
 import React from "react";
 
+import "./NotFoundPage.scss";
+
 import { Container } from "reactstrap";
+import { pageColor } from "Pages/_Constants/pageColor";
 
 export default function NotFoundPage() {
   return (
-    <section className="notFoundPage">
+    <section
+      className="notFoundPage"
+      style={{ border: `4px solid ${pageColor}` }}
+    >
       <header>
         <Container>
-          <h2>404, Page not found</h2>
+          <h2>Not found page</h2>
         </Container>
       </header>
 

@@ -1,6 +1,8 @@
+@import "Assets/Scss/Variables";
+
 .simpleLoader {
   opacity: 0.8;
-  background-color: #eee;
+  background-color: $secondaryBackgroundColor;
   height: 5px;
   position: fixed;
   left: 0;
@@ -9,7 +11,6 @@
   z-index: 1000;
 
   .indicator {
-    background-color: #000;
     width: 40%;
     animation: loading 2s linear infinite;
     position: absolute;

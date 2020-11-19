@@ -7,16 +7,20 @@ export const siteNavItems: NavItem[] = [
     url: routePaths.site.homePage,
   },
   {
-    text: "Green Test-1",
+    text: "Test 1",
     url: routePaths.site.green.test1Page,
   },
   {
-    text: "Green Test-2",
+    text: "Test 2",
     url: routePaths.site.green.test2Page,
   },
   {
-    text: "RedGreenTest-1",
+    text: "Test 3",
     url: routePaths.site.red.green.test1Page,
+  },
+  {
+    text: "Not found",
+    url: "/not-found",
   },
   {
     text: "Admin",

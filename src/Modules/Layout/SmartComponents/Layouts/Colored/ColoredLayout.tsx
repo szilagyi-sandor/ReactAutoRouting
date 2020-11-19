@@ -4,7 +4,6 @@ import "./ColoredLayout.scss";
 
 import { ColoredLayoutProps } from "./interfaces";
 
-// TODO: is memo necessary?
 function ColoredLayout({
   children,
   color,
@@ -18,4 +17,5 @@ function ColoredLayout({
   );
 }
 
+// TODO: is memo necessary here?
 export default memo(ColoredLayout);

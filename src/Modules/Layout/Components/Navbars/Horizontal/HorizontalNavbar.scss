@@ -2,7 +2,6 @@
 
 .horizontalNavbar {
   background: $secondaryBackgroundColor;
-  border-bottom: 4px solid $primaryColor;
 
   > div {
     padding: 0;
@@ -19,8 +18,9 @@
       color: $color;
       transition: color 320ms linear;
 
-      &.active {
-        color: $primaryColor;
+      &.active,
+      &:hover {
+        color: inherit;
       }
     }
   }
@@ -28,15 +28,21 @@
   ul.navbar-nav {
     li.nav-item {
       a.nav-link {
-        color: $color;
         font-size: 18px;
         text-decoration: none;
         opacity: 1;
-        transition: color 320ms linear;
         padding: 5px 15px;
 
-        &.active {
-          color: $primaryColor;
+        span {
+          color: $color;
+          transition: color 320ms linear;
+        }
+
+        &.active,
+        &:hover {
+          span {
+            color: inherit;
+          }
         }
       }
     }

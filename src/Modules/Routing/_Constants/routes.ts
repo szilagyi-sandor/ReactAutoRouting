@@ -26,9 +26,6 @@ const GreenLayout = lazy(
 const RedLayout = lazy(
   () => import("Modules/Layout/SmartComponents/Layouts/Red/RedLayout")
 );
-// const BlueLayout = lazy(
-//   () => import("Modules/Layout/SmartComponents/Layouts/Blue/BlueLayout")
-// );
 
 // Order matters here!
 // TODO: Auth rules should accept the whole role instead of value
@@ -58,13 +55,13 @@ export const unprocessedRoutes = createRoutes({
           test1: {
             Component: Test1Page,
             documentTitle: "Test 1",
-            paths: ["", "test-1", "t-1"],
+            paths: ["", "/test-1", "/t-1"],
           },
 
           test2: {
             Component: Test2Page,
             documentTitle: "Test 2",
-            paths: ["test-2"],
+            paths: ["/test-2"],
           },
 
           notFound: {

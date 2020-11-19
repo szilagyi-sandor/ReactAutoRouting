@@ -1,10 +1,10 @@
 import { Route } from "../_Interfaces/Route";
 import { getCombinations } from "./combinations";
-import { getFullRoutePaths } from "./getFullRoutePaths";
+import { createFullRoutePaths } from "./createFullRoutePaths";
 
 // Parameter must be a processed route
 export const getRoutePath = (route: Route, index?: number): string => {
-  let paths = getFullRoutePaths(route);
+  let paths = createFullRoutePaths(route);
 
   if (index) {
     const combinations = getCombinations(paths);

@@ -1,10 +1,13 @@
 import React from "react";
 
+import "./Test1Page.scss";
+
 import { Container } from "reactstrap";
+import { pageColor } from "Pages/_Constants/pageColor";
 
 export default function Test1Page() {
   return (
-    <section className="test1Page">
+    <section className="test1Page" style={{ border: `4px solid ${pageColor}` }}>
       <header>
         <Container>
           <h2>Test 1</h2>

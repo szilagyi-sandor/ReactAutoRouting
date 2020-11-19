@@ -1,13 +1,16 @@
 import React from "react";
 
+import "./HomePage.scss";
+
 import { Container } from "reactstrap";
+import { pageColor } from "Pages/_Constants/pageColor";
 
 export default function HomePage() {
   return (
-    <section className="homePage">
+    <section className="homePage" style={{ border: `4px solid ${pageColor}` }}>
       <header>
         <Container>
-          <h2>Home</h2>
+          <h2>Home page</h2>
         </Container>
       </header>
 

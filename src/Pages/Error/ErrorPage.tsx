@@ -1,13 +1,16 @@
 import React from "react";
 
+import "./ErrorPage.scss";
+
 import { Container } from "reactstrap";
+import { pageColor } from "Pages/_Constants/pageColor";
 
 export default function ErrorPage() {
   return (
-    <section className="errorPage">
+    <section className="errorPage" style={{ border: `4px solid ${pageColor}` }}>
       <header>
         <Container>
-          <h2>Error</h2>
+          <h2>Error page</h2>
         </Container>
       </header>
 

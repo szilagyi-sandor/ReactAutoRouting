@@ -1,8 +1,7 @@
 import React, { Suspense } from "react";
 
 import { Route, Switch } from "react-router-dom";
-import { getCombinations } from "../_Helpers/combinations";
-import { getFullRoutePaths } from "../_Helpers/getFullRoutePaths";
+import { getAllRoutePaths } from "../_Helpers/getAllRoutePaths";
 import { RouteMapperProps } from "./interfaces";
 
 // TODO: document title
@@ -17,12 +16,8 @@ export default function RouteMapper({
         {Object.keys(routes).map((key, index) => {
           const route = routes[key];
           const { Component } = route;
-          const path = getCombinations(getFullRoutePaths(route)).map((p) =>
-            p.join("")
-          );
+          const path = getAllRoutePaths(route);
 
-          console.log(key, "key");
-          console.log(path, "path");
           return (
             <Route
               key={index}

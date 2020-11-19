@@ -1,13 +1,19 @@
 import React from "react";
 
+import "./AdminHomePage.scss";
+
 import { Container } from "reactstrap";
+import { pageColor } from "Pages/_Constants/pageColor";
 
 export default function AdminHomePage() {
   return (
-    <section className="adminHomePage">
+    <section
+      className="adminHomePage"
+      style={{ border: `4px solid ${pageColor}` }}
+    >
       <header>
         <Container>
-          <h2>Admin Home</h2>
+          <h2>Admin Home page</h2>
         </Container>
       </header>
 

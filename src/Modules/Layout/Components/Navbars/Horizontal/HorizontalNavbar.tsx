@@ -9,13 +9,17 @@ import { NavLink } from "react-router-dom";
 export default function HorizontalNavbar({
   items,
   navbarBrand,
+  color,
 }: HorizontalNavbarProps) {
   return (
-    <div className="horizontalNavbar">
+    <div
+      className="horizontalNavbar"
+      style={{ borderBottom: `4px solid ${color}` }}
+    >
       <Container>
         <Navbar expand="md">
           {navbarBrand && (
-            <h1 className="navbarBrand navbar-brand">
+            <h1 className="navbarBrand navbar-brand" style={{ color }}>
               <NavLink to={navbarBrand.url} exact>
                 {navbarBrand.text}
               </NavLink>
@@ -25,8 +29,13 @@ export default function HorizontalNavbar({
           <Nav className="ml-auto" navbar>
             {items.map((item, index) => (
               <NavItem key={index}>
-                <NavLink className="nav-link" to={item.url} exact>
-                  {item.text}
+                <NavLink
+                  className="nav-link"
+                  to={item.url}
+                  style={{ color }}
+                  exact
+                >
+                  <span>{item.text}</span>
                 </NavLink>
               </NavItem>
             ))}

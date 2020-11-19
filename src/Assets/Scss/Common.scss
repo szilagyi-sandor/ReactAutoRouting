@@ -28,14 +28,12 @@ html {
 a {
   display: inline-block;
   text-decoration: none;
-  color: $primaryColor;
 
   &:hover,
   &:focus,
   &:active,
   &.active {
     text-decoration: underline;
-    color: $primaryColor;
   }
 }
 
