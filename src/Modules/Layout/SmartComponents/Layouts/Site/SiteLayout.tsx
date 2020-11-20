@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 import "./SiteLayout.scss";
 
@@ -10,8 +10,11 @@ import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import { siteLayoutColor } from "./_Constants/siteLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
+import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function SiteLayout({ routes }: LayoutProps) {
+function SiteLayout({ routes, documentTitleFallback }: LayoutProps) {
+  const [number, setNumber] = useState(0);
+
   return (
     <section
       className="siteLayout"
@@ -32,6 +35,7 @@ function SiteLayout({ routes }: LayoutProps) {
         <RouteMapper
           routes={routes}
           suspenseFallback={<SimpleLoader color={siteLayoutColor} />}
+          documentTitleFallback={documentTitleFallback}
         />
       </div>
 
@@ -40,6 +44,8 @@ function SiteLayout({ routes }: LayoutProps) {
           <p className="layoutInfo" style={{ color: siteLayoutColor }}>
             Site Layout
           </p>
+
+          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
       </footer>
     </section>

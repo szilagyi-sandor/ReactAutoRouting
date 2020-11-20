@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
-import "./ErrorPage.scss";
+import "./InformalNotFoundPage.scss";
 
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-export default function ErrorPage() {
+// TODO: add something funny
+export default function InformalNotFoundPage() {
   const [number, setNumber] = useState(0);
 
   return (
-    <section className="errorPage" style={{ border: `4px solid ${pageColor}` }}>
+    <section
+      className="informalNotFoundPage"
+      style={{ border: `4px solid ${pageColor}` }}
+    >
       <header>
         <Container>
-          <h2>Error page</h2>
+          <h2>Informal not found page</h2>
 
           <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
@@ -21,7 +25,10 @@ export default function ErrorPage() {
 
       <div className="content">
         <Container>
-          <p>Something went wrong.</p>
+          <p>
+            The link is incorrect or the page has been removed. Make sure the
+            link you are trying to open is correct.
+          </p>
         </Container>
       </div>
     </section>

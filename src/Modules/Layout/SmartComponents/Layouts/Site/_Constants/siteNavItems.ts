@@ -23,6 +23,14 @@ export const siteNavItems: NavItem[] = [
     url: "/not-found",
   },
   {
+    text: "Not found 2",
+    url: "/red/not-found",
+  },
+  {
+    text: "Not found 3",
+    url: "/red/green/not-found",
+  },
+  {
     text: "Admin",
     url: routePaths.admin.homePage,
   },

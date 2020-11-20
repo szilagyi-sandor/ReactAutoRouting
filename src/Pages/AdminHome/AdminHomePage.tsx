@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./AdminHomePage.scss";
 
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
+import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
 export default function AdminHomePage() {
+  const [number, setNumber] = useState(0);
+
   return (
     <section
       className="adminHomePage"
@@ -14,6 +17,7 @@ export default function AdminHomePage() {
       <header>
         <Container>
           <h2>Admin Home page</h2>
+          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
       </header>
 

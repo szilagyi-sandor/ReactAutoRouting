@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 import "./RedLayout.scss";
 
@@ -7,8 +7,11 @@ import ColoredLayout from "../Colored/ColoredLayout";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import { redLayoutColor } from "./_Constants/redLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
+import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function RedLayout({ routes, suspenseFallback }: LayoutProps) {
+function RedLayout({ routes, documentTitleFallback }: LayoutProps) {
+  const [number, setNumber] = useState(0);
+
   return (
     <div
       className="redLayout"
@@ -21,6 +24,7 @@ function RedLayout({ routes, suspenseFallback }: LayoutProps) {
           <RouteMapper
             routes={routes}
             suspenseFallback={<SimpleLoader color={redLayoutColor} />}
+            documentTitleFallback={documentTitleFallback}
           />
         </div>
 
@@ -29,6 +33,8 @@ function RedLayout({ routes, suspenseFallback }: LayoutProps) {
           style={{ borderTop: `4px solid ${redLayoutColor}` }}
         >
           <p style={{ color: redLayoutColor }}>Red Layout</p>
+
+          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </div>
       </ColoredLayout>
     </div>

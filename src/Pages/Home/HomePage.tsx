@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./HomePage.scss";
 
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
+import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
 export default function HomePage() {
+  const [number, setNumber] = useState(0);
+
   return (
     <section className="homePage" style={{ border: `4px solid ${pageColor}` }}>
       <header>
         <Container>
           <h2>Home page</h2>
+
+          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
       </header>
 

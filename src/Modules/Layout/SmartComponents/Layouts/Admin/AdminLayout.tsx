@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 import "./AdminLayout.scss";
 
@@ -10,8 +10,11 @@ import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { adminLayoutColor } from "./_Constants/adminLayoutColor";
+import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function AdminLayout({ routes }: LayoutProps) {
+function AdminLayout({ routes, documentTitleFallback }: LayoutProps) {
+  const [number, setNumber] = useState(0);
+
   return (
     <section
       className="adminLayout"
@@ -32,6 +35,7 @@ function AdminLayout({ routes }: LayoutProps) {
         <RouteMapper
           routes={routes}
           suspenseFallback={<SimpleLoader color={adminLayoutColor} />}
+          documentTitleFallback={documentTitleFallback}
         />
       </div>
 
@@ -40,6 +44,7 @@ function AdminLayout({ routes }: LayoutProps) {
           <p className="layoutInfo" style={{ color: adminLayoutColor }}>
             Admin Layout
           </p>
+          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
       </footer>
     </section>

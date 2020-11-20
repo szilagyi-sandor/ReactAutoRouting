@@ -9,6 +9,7 @@ import { RouteMapperProps } from "./interfaces";
 export default function RouteMapper({
   routes,
   suspenseFallback,
+  documentTitleFallback,
 }: RouteMapperProps) {
   return (
     <Suspense fallback={suspenseFallback}>
@@ -22,20 +23,42 @@ export default function RouteMapper({
             <Route
               key={index}
               path={path}
-              render={() => (
-                // TODO: authChecker missing
-                // <AuthChecker rule={r.authRule}>
-                // TODO: check if props given this way work properly
-                <Component
-                  {...(route.children
-                    ? {
-                        routes: route.children,
-                        suspenseFallback: suspenseFallback,
-                      }
-                    : {})}
-                />
-                // </AuthChecker>
-              )}
+              render={() => {
+                if (!route.children) {
+                  let documentTitle = route.parentsInfo
+                    ? route.parentsInfo.documentTitles.join("")
+                    : "";
+
+                  documentTitle += route.documentTitle
+                    ? route.documentTitle
+                    : "";
+
+                  if (!documentTitle) {
+                    console.log(documentTitleFallback);
+                    documentTitle = documentTitleFallback
+                      ? documentTitleFallback
+                      : "Document";
+                  }
+
+                  document.title = documentTitle;
+                }
+
+                return (
+                  // TODO: authChecker missing
+                  // <AuthChecker rule={r.authRule}>
+                  // TODO: check if props given this way work properly
+                  <Component
+                    {...(route.children
+                      ? {
+                          routes: route.children,
+                          suspenseFallback: suspenseFallback,
+                          documentTitleFallback,
+                        }
+                      : {})}
+                  />
+                  // </AuthChecker>
+                );
+              }}
               exact
             />
           );

@@ -1,0 +1,25 @@
+.renderChecker {
+  display: flex;
+
+  .btnWrapper {
+    display: inline-block;
+
+    button {
+      padding: 4px 5px;
+      border: 0;
+      background: #eee;
+      border: 2px solid #000;
+    }
+  }
+
+  > span {
+    display: inline-block;
+    padding: 4px 5px;
+    background: #16a316;
+    border: 2px solid #000;
+
+    &.initial {
+      background-color: #ad2e2e;
+    }
+  }
+}

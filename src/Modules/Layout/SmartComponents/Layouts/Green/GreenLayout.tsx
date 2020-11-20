@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 import "./GreenLayout.scss";
 
@@ -7,8 +7,13 @@ import ColoredLayout from "../Colored/ColoredLayout";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import { greenLayoutColor } from "./_Constants/greenLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
+import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function GreenLayout({ routes, suspenseFallback }: LayoutProps) {
+function GreenLayout({ routes, documentTitleFallback }: LayoutProps) {
+  const [number, setNumber] = useState(0);
+  useEffect(() => {
+    console.log("GreenLayout - render");
+  });
   return (
     <div
       className="greenLayout"
@@ -21,6 +26,7 @@ function GreenLayout({ routes, suspenseFallback }: LayoutProps) {
           <RouteMapper
             routes={routes}
             suspenseFallback={<SimpleLoader color={greenLayoutColor} />}
+            documentTitleFallback={documentTitleFallback}
           />
         </div>
 
@@ -29,6 +35,8 @@ function GreenLayout({ routes, suspenseFallback }: LayoutProps) {
           style={{ borderTop: `4px solid ${greenLayoutColor}` }}
         >
           <p style={{ color: greenLayoutColor }}>Green Layout</p>
+
+          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </div>
       </ColoredLayout>
     </div>
