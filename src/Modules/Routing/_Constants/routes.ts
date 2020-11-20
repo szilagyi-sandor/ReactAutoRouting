@@ -12,7 +12,7 @@ const InformalNotFoundPage = lazy(
   () => import("Pages/InformalNotFound/InformalNotFoundPage")
 );
 // TODO: missing now
-// const RestrictedPage = lazy(() => import("Pages/Restricted/RestrictedPage"));
+const RestrictedPage = lazy(() => import("Pages/Restricted/RestrictedPage"));
 const Test1Page = lazy(() => import("Pages/Test1/Test1Page"));
 const Test2Page = lazy(() => import("Pages/Test2/Test2Page"));
 
@@ -47,6 +47,7 @@ export const unprocessedRoutes = createRoutes({
     children: {
       home: {
         Component: AdminHomePage,
+        paths: [""],
         documentTitle: "Home",
       },
 
@@ -65,12 +66,6 @@ export const unprocessedRoutes = createRoutes({
             Component: Test2Page,
             documentTitle: "Test 2",
             paths: ["/test-2"],
-          },
-
-          notFound: {
-            Component: InformalNotFoundPage,
-            paths: ["*"],
-            documentTitle: "Not Found",
           },
         },
       },
@@ -92,6 +87,7 @@ export const unprocessedRoutes = createRoutes({
   site: {
     Component: SiteLayout,
     documentTitle: "Site - ",
+    paths: [""],
     children: {
       home: {
         Component: HomePage,
@@ -120,6 +116,14 @@ export const unprocessedRoutes = createRoutes({
                 documentTitle: "Not Found",
               },
             },
+          },
+
+          // This resricted page has it's own route. If you
+          // want it to be hidden just don't set it's paths.
+          _restricted: {
+            Component: RestrictedPage,
+            documentTitle: "Restricted",
+            paths: ["/restricted"],
           },
 
           notFound: {
@@ -155,11 +159,10 @@ export const unprocessedRoutes = createRoutes({
         documentTitle: "Not Found",
       },
 
-      // TODO: auth is missing now
-      // restricted: {
-      //   Component: () => null,
-      //   documentTitle: "Restricted",
-      // },
+      _restricted: {
+        Component: RestrictedPage,
+        documentTitle: "Restricted",
+      },
     },
   },
 });

@@ -1,13 +1,15 @@
 import { Route } from "../_Interfaces/Route";
 
-export const createFullRoutePaths = (route: Route): string[][] => {
+export const createFullRoutePaths = (route: Route): string[][] | undefined => {
   let paths: string[][] = [];
 
-  if (route.parentsInfo) {
-    paths = [...route.parentsInfo.paths];
+  // For filtered items we return undefined,
+  if (!route.parentsInfo || !route.paths || route.paths.length === 0) {
+    return undefined;
   }
 
-  paths = [...paths, ...(route.paths ? [route.paths] : [[""]])];
+  paths = [...route.parentsInfo.paths];
+  paths = [...paths, [...route.paths]];
 
   if (route.childrenInfo) {
     const childrenPaths: string[] = [];

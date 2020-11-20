@@ -16,6 +16,11 @@ export default function RouteMapper({
       <Switch>
         {Object.keys(routes).map((key, index) => {
           const route = routes[key];
+
+          if (!route.paths || route.paths.length === 0) {
+            return null;
+          }
+
           const { Component } = route;
           const path = getAllRoutePaths(route);
 

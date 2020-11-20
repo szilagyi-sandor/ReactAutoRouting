@@ -3,5 +3,11 @@ import { getCombinations } from "./combinations";
 import { createFullRoutePaths } from "./createFullRoutePaths";
 
 export const getAllRoutePaths = (route: Route): string[] => {
-  return getCombinations(createFullRoutePaths(route)).map((p) => p.join(""));
+  const paths = createFullRoutePaths(route);
+
+  if (!paths) {
+    return ["/"];
+  }
+
+  return getCombinations(paths).map((p) => p.join(""));
 };

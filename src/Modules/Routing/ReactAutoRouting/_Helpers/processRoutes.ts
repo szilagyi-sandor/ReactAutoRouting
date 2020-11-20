@@ -2,57 +2,55 @@ import { Route } from "../_Interfaces/Route";
 import { getCombinations } from "./combinations";
 import { deepMapRoutes } from "./deepMapRoutes";
 import { getRouteItem } from "./getRouteItem";
+import { matchMultiParentKeys } from "./matchMultiParentKeys";
 
 export const processRoutes = <T extends Record<string, Route>>(
   routes: T
 ): T => {
   const output: T = { ...routes };
+  // The keys of the items without a route or with a filtered parent
+  // will be stored here.
+  const filteredItems: string[][] = [];
 
-  deepMapRoutes(output, (item, keys, indexes) => {
-    // TODO: delete
-    // console.log(item, "item");
-    // console.log(keys, "keys");
-    // console.log(indexes, "indexes");
-    // console.log("--------------------------------------");
+  deepMapRoutes(output, (item, keys) => {
+    const parentKeys = keys.slice(0, -1);
+    const lastKey = keys[keys.length - 1];
+    // We will take the previous item so we can take its data and it's
+    // also used to enable creating deep copies without modifying the input.
+    const previousItem = getRouteItem(output, parentKeys);
 
-    if (keys.length === 1) {
-      // TODO: Try to avoid casting by creating a generic deepObjectMapper.
+    const hasFilteredParent =
+      filteredItems.length > 0 && matchMultiParentKeys(filteredItems, keys);
+    const isFiltered =
+      hasFilteredParent || !item.paths || item.paths.length === 0;
 
-      // The deepMapRoutes function is returning keys as string and item as
-      // Route, but to keep the input object properties and intellisense we are using
-      // the generic extend trick and because of that the type Route is not enough for
-      // the output.
-      const modKey: keyof T = keys[0];
-      output[modKey] = {
-        ...(item as T[keyof T]),
-        childrenInfo: item.children ? [] : undefined,
-      };
-    } else {
-      const parentKeys = keys.slice(0, -1);
-      const lastKey = keys[keys.length - 1];
-      // We will take the previous item so we can take its data and it's
-      // also used to enable creating deep copies without modifying the input.
-      const previousItem = getRouteItem(output, parentKeys);
+    if (isFiltered && !hasFilteredParent) {
+      filteredItems.push(keys);
+    }
 
-      // This should always be true, but better check
-      if (previousItem && previousItem.children) {
-        // Getting previous document titles
+    if (previousItem && previousItem.children) {
+      if (!isFiltered) {
+        // Checking if current item has a restricted sibling.
+        const hasRestrictedSibling = !!previousItem.children._restricted;
+        // Getting previous document titles.
+        console.log(previousItem);
         const documentTitles: string[] = [
           ...(previousItem.parentsInfo
             ? previousItem.parentsInfo.documentTitles
             : []),
           previousItem.documentTitle ? previousItem.documentTitle : "",
         ];
-
-        // Getting previous parent paths
+        // Getting previous parent paths.
         const parentPaths: string[][] = [
           ...(previousItem.parentsInfo
             ? previousItem.parentsInfo.paths.map((p) => [...p])
             : []),
-          ...(previousItem.paths ? [[...previousItem.paths]] : [[""]]),
+          // previousItem.paths cannot be undefined, because if the previous item has no
+          // path then this item is filtered too by the hasFilteredParent check.
+          [...previousItem.paths!],
         ];
 
-        // Setting curent item's data
+        // Setting curent item's data.
         previousItem.children = {
           ...previousItem.children,
           [lastKey]: {
@@ -61,36 +59,45 @@ export const processRoutes = <T extends Record<string, Route>>(
               documentTitles,
               paths: parentPaths,
             },
-            childrenInfo: item.children ? [] : undefined,
           },
         };
 
-        // If it's a page-route(not a parent) we are looping through all
-        // its parents to set their data.
+        // If it's a page-route(has no children) and it's not filtered we are looping
+        // through all its parents to complement their data.
         if (!item.children) {
-          parentKeys.forEach((pk, index) => {
+          // We need to identify which parent should show its own restrictedSibling,
+          // if the current item has none.
+          let restrictedHandleSelector: string[] = [];
+
+          parentKeys.forEach((_, index) => {
+            const parentSelector = keys.slice(0, index + 1);
             let parentItem: Route | undefined;
+
             if (index === parentKeys.length - 1) {
               // We already took the first parent, so let's use it here
               parentItem = previousItem;
             } else {
-              parentItem = getRouteItem(output, keys.slice(0, index + 1));
+              parentItem = getRouteItem(output, parentSelector);
             }
 
-            // This should always be true, but better check
-            if (parentItem && parentItem.childrenInfo) {
+            // This should always be true, but better check.
+            if (parentItem && parentItem.children) {
+              if (index === 0 || parentItem.children._restricted) {
+                restrictedHandleSelector = parentSelector;
+              }
+
               // this might be a bit confusing, we these are the children
               // to the curentParent, based on currentItemParents.
+              // TODO: item.paths will mean it should be filtered out
               const childrenPaths = [
                 ...parentPaths.slice(index + 1),
-                ...(item.paths && item.paths.length > 0
-                  ? [item.paths]
-                  : [[""]]),
+                // Item should always has a path, otherwise it's filtered
+                [...item.paths!],
               ];
               const combinations = getCombinations(childrenPaths);
 
               parentItem.childrenInfo = [
-                ...parentItem.childrenInfo,
+                ...(parentItem.childrenInfo ? parentItem.childrenInfo : []),
                 {
                   paths: combinations,
                   authRules: {} as any,
@@ -98,8 +105,39 @@ export const processRoutes = <T extends Record<string, Route>>(
               ];
             }
           });
+
+          // Setting the authRule based on the restrictedHandleSelector, if it's necessary.
+          if (!hasRestrictedSibling && restrictedHandleSelector) {
+            const restrictedHandlerItem = getRouteItem(
+              output,
+              restrictedHandleSelector
+            );
+
+            if (restrictedHandlerItem && restrictedHandlerItem.childrenInfo) {
+              const resChildrenInfo = restrictedHandlerItem.childrenInfo;
+              resChildrenInfo[resChildrenInfo.length - 1].authRules =
+                "HANDLE THIS";
+            }
+          }
         }
+      } else {
+        // Not setting anything on this item, since it will be filtered out.
+        previousItem.children = {
+          ...previousItem.children,
+          [lastKey]: { ...item },
+        };
       }
+    } else {
+      // Here we handle the first level items, since they does not have previousItem.
+      // Setting parentInfo to empty array to differentiate between filtered and normal routes.
+      const modKey: keyof T = keys[0];
+      output[modKey] = {
+        ...output[modKey],
+        parentsInfo: {
+          paths: [],
+          documentTitles: [],
+        },
+      };
     }
   });
 
