@@ -11,6 +11,7 @@ import { matchPath, useLocation } from "react-router-dom";
 import { getAllRoutePaths } from "Modules/Routing/ReactAutoRouting/_Helpers/getAllRoutePaths";
 import { adminLayoutColor } from "Modules/Layout/SmartComponents/Layouts/Admin/_Constants/adminLayoutColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
+import { mockedUserInfo } from "Utils/mock";
 
 function App() {
   // Deciding which color to add to the first loader, based on
@@ -25,7 +26,7 @@ function App() {
     console.log("App - render");
     console.log(routes);
   });
-
+ 
   return (
     <div className="App">
       <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
@@ -33,6 +34,7 @@ function App() {
         <RouteMapper
           routes={routes}
           suspenseFallback={<SimpleLoader color={loaderColor} />}
+          userInfo={mockedUserInfo}
         />
       </ErrorBoundary>
     </div>

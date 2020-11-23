@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, PropsWithChildren, useState } from "react";
 
 import "./SiteLayout.scss";
 
@@ -12,7 +12,10 @@ import { siteLayoutColor } from "./_Constants/siteLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function SiteLayout({ routes, documentTitleFallback }: LayoutProps) {
+function SiteLayout({
+  routeMapperProps,
+  children,
+}: PropsWithChildren<LayoutProps>) {
   const [number, setNumber] = useState(0);
 
   return (
@@ -32,11 +35,14 @@ function SiteLayout({ routes, documentTitleFallback }: LayoutProps) {
       </header>
 
       <div className="content">
-        <RouteMapper
-          routes={routes}
-          suspenseFallback={<SimpleLoader color={siteLayoutColor} />}
-          documentTitleFallback={documentTitleFallback}
-        />
+        {routeMapperProps && (
+          <RouteMapper
+            {...routeMapperProps}
+            suspenseFallback={<SimpleLoader color={siteLayoutColor} />}
+          />
+        )}
+
+        {children && children}
       </div>
 
       <footer style={{ borderTop: `4px solid ${siteLayoutColor}` }}>

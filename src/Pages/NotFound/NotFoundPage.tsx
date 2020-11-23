@@ -5,6 +5,7 @@ import "./NotFoundPage.scss";
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
+import { Link } from "react-router-dom";
 
 export default function NotFoundPage() {
   const [number, setNumber] = useState(0);
@@ -28,6 +29,8 @@ export default function NotFoundPage() {
             The link is incorrect or the page has been removed. Make sure the
             link you are trying to open is correct.
           </p>
+
+          <Link to={`/admin?test=${number}`}>Test link to self</Link>
         </Container>
       </div>
     </section>

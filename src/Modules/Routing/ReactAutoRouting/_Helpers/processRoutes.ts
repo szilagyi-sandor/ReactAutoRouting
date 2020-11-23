@@ -33,7 +33,6 @@ export const processRoutes = <T extends Record<string, Route>>(
         // Checking if current item has a restricted sibling.
         const hasRestrictedSibling = !!previousItem.children._restricted;
         // Getting previous document titles.
-        console.log(previousItem);
         const documentTitles: string[] = [
           ...(previousItem.parentsInfo
             ? previousItem.parentsInfo.documentTitles
@@ -45,6 +44,7 @@ export const processRoutes = <T extends Record<string, Route>>(
           ...(previousItem.parentsInfo
             ? previousItem.parentsInfo.paths.map((p) => [...p])
             : []),
+
           // previousItem.paths cannot be undefined, because if the previous item has no
           // path then this item is filtered too by the hasFilteredParent check.
           [...previousItem.paths!],
@@ -64,6 +64,7 @@ export const processRoutes = <T extends Record<string, Route>>(
 
         // If it's a page-route(has no children) and it's not filtered we are looping
         // through all its parents to complement their data.
+        // TODO: not only add pages but also add layouts
         if (!item.children) {
           // We need to identify which parent should show its own restrictedSibling,
           // if the current item has none.
@@ -86,7 +87,7 @@ export const processRoutes = <T extends Record<string, Route>>(
                 restrictedHandleSelector = parentSelector;
               }
 
-              // this might be a bit confusing, we these are the children
+              // this might be a bit confusing, these are the children
               // to the curentParent, based on currentItemParents.
               // TODO: item.paths will mean it should be filtered out
               const childrenPaths = [
@@ -100,12 +101,15 @@ export const processRoutes = <T extends Record<string, Route>>(
                 ...(parentItem.childrenInfo ? parentItem.childrenInfo : []),
                 {
                   paths: combinations,
-                  authRules: {} as any,
+                  authRule: undefined,
+                  type: "Page"
                 },
               ];
             }
           });
 
+          // TODO: try to get this
+          // TODO: this should also go for wrappers -> store every children with type assigned to it.
           // Setting the authRule based on the restrictedHandleSelector, if it's necessary.
           if (!hasRestrictedSibling && restrictedHandleSelector) {
             const restrictedHandlerItem = getRouteItem(
@@ -115,8 +119,8 @@ export const processRoutes = <T extends Record<string, Route>>(
 
             if (restrictedHandlerItem && restrictedHandlerItem.childrenInfo) {
               const resChildrenInfo = restrictedHandlerItem.childrenInfo;
-              resChildrenInfo[resChildrenInfo.length - 1].authRules =
-                "HANDLE THIS";
+              resChildrenInfo[resChildrenInfo.length - 1].authRule =
+                item.authRule;
             }
           }
         }

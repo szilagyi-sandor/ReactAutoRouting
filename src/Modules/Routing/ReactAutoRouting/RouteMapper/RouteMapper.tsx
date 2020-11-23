@@ -1,16 +1,24 @@
 import React, { Suspense } from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { checkAuth } from "../_Helpers/checkAuth";
+import { checkChildrenInfoAuth } from "../_Helpers/checkChildrenInfoAuth";
 import { getAllRoutePaths } from "../_Helpers/getAllRoutePaths";
 import { RouteMapperProps } from "./interfaces";
 
-// TODO: document title
-// TODO: RouteProps finishing touch
+// TODO: Optimalization for auth
+// if it has no sibling a parent will check that, except if it's 1st level
+
 export default function RouteMapper({
   routes,
   suspenseFallback,
   documentTitleFallback,
+  authChecker,
+  userInfo,
+  restricted
 }: RouteMapperProps) {
+  const { pathname } = useLocation();
+
   return (
     <Suspense fallback={suspenseFallback}>
       <Switch>
@@ -21,9 +29,26 @@ export default function RouteMapper({
             return null;
           }
 
+          const routeAuthValid = route.authRule
+            ? authChecker
+              ? authChecker(route.authRule, userInfo)
+              : checkAuth(route.authRule, userInfo)
+            : true;
+
+          const childrenAuthValid = checkChildrenInfoAuth(
+            route,
+            pathname,
+            userInfo,
+            authChecker
+          );
+
           const { Component } = route;
           const path = getAllRoutePaths(route);
 
+          console.log(key, "key");
+          console.log(routeAuthValid, "routeAuthValid");
+          console.log(childrenAuthValid, "childrenAuthValid");
+          console.log(restricted, "restricted");
           return (
             <Route
               key={index}
@@ -39,7 +64,6 @@ export default function RouteMapper({
                     : "";
 
                   if (!documentTitle) {
-                    console.log(documentTitleFallback);
                     documentTitle = documentTitleFallback
                       ? documentTitleFallback
                       : "Document";
@@ -48,21 +72,28 @@ export default function RouteMapper({
                   document.title = documentTitle;
                 }
 
-                return (
+                // Optimize
+                return restricted !== false && routeAuthValid ? (
                   // TODO: authChecker missing
-                  // <AuthChecker rule={r.authRule}>
                   // TODO: check if props given this way work properly
                   <Component
                     {...(route.children
                       ? {
-                          routes: route.children,
-                          suspenseFallback: suspenseFallback,
-                          documentTitleFallback,
+                          routeMapperProps: {
+                            routes: route.children,
+                            suspenseFallback: suspenseFallback,
+                            documentTitleFallback,
+                            userInfo,
+                            authChecker,
+                            restricted: childrenAuthValid
+                          },
                         }
                       : {})}
                   />
-                  // </AuthChecker>
-                );
+                ) : // </AuthChecker>
+                routes._restricted ? (
+                  <routes._restricted.Component />
+                ) : null;
               }}
               exact
             />

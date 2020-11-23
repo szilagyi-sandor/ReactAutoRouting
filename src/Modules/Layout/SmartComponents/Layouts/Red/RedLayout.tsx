@@ -9,7 +9,7 @@ import { redLayoutColor } from "./_Constants/redLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function RedLayout({ routes, documentTitleFallback }: LayoutProps) {
+function RedLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
 
   return (
@@ -21,11 +21,12 @@ function RedLayout({ routes, documentTitleFallback }: LayoutProps) {
         {/* This dev keeps the footer at the bottom, until 
         RouteMapper returns nothing */}
         <div>
-          <RouteMapper
-            routes={routes}
-            suspenseFallback={<SimpleLoader color={redLayoutColor} />}
-            documentTitleFallback={documentTitleFallback}
-          />
+          {routeMapperProps && (
+            <RouteMapper
+              {...routeMapperProps}
+              suspenseFallback={<SimpleLoader color={redLayoutColor} />}
+            />
+          )}
         </div>
 
         <div

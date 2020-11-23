@@ -12,7 +12,7 @@ import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { adminLayoutColor } from "./_Constants/adminLayoutColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
-function AdminLayout({ routes, documentTitleFallback }: LayoutProps) {
+function AdminLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
 
   return (
@@ -32,11 +32,12 @@ function AdminLayout({ routes, documentTitleFallback }: LayoutProps) {
       </header>
 
       <div className="content">
-        <RouteMapper
-          routes={routes}
-          suspenseFallback={<SimpleLoader color={adminLayoutColor} />}
-          documentTitleFallback={documentTitleFallback}
-        />
+        {routeMapperProps && (
+          <RouteMapper
+            {...routeMapperProps}
+            suspenseFallback={<SimpleLoader color={adminLayoutColor} />}
+          />
+        )}
       </div>
 
       <footer style={{ borderTop: `4px solid ${adminLayoutColor}` }}>

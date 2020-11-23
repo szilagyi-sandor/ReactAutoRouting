@@ -3,4 +3,6 @@
 import { RouteMapperProps } from "../RouteMapper/interfaces";
 
 // TODO: maybe not even needed
-export interface LayoutProps extends RouteMapperProps {}
+export interface LayoutProps {
+  routeMapperProps?: RouteMapperProps;
+}

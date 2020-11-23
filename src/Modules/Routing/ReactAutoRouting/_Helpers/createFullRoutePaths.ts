@@ -13,7 +13,10 @@ export const createFullRoutePaths = (route: Route): string[][] | undefined => {
 
   if (route.childrenInfo) {
     const childrenPaths: string[] = [];
-    route.childrenInfo.forEach((ci) => {
+    // TODO: explain better why check only for pages
+    // we only need pages since they have all the info of their parents,
+    // and it's easier to map (only 1 parent is possible)
+    route.childrenInfo.filter(ci => ci.type === "Page").forEach((ci) => {
       ci.paths.forEach((p) => {
         childrenPaths.push(p.join(""));
       });

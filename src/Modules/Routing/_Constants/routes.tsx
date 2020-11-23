@@ -1,4 +1,6 @@
-import { lazy } from "react";
+import React, { lazy } from "react";
+
+import { handledAuthTypes } from "../ReactAutoRouting/_Constants/handledAuthTypes";
 import { createRoutes } from "../ReactAutoRouting/_Helpers/createRoutes";
 import { processRoutes } from "../ReactAutoRouting/_Helpers/processRoutes";
 
@@ -44,6 +46,10 @@ export const unprocessedRoutes = createRoutes({
     Component: AdminLayout,
     paths: ["/admin"],
     documentTitle: "Admin - ",
+    authRule: {
+      type: handledAuthTypes.requiredLevel,
+      level: 2,
+    },
     children: {
       home: {
         Component: AdminHomePage,
@@ -60,6 +66,10 @@ export const unprocessedRoutes = createRoutes({
             Component: Test1Page,
             documentTitle: "Test 1",
             paths: ["", "/test-1", "/t-1"],
+            authRule: {
+              type: handledAuthTypes.excludedRoles,
+              roles: [2],
+            },
           },
 
           test2: {
@@ -74,6 +84,10 @@ export const unprocessedRoutes = createRoutes({
         Component: Test2Page,
         documentTitle: "Test 2",
         paths: ["/test-2"],
+        authRule: {
+          type: handledAuthTypes.excludedRoles,
+          roles: [2],
+        },
       },
 
       notFound: {
@@ -81,7 +95,22 @@ export const unprocessedRoutes = createRoutes({
         paths: ["*"],
         documentTitle: "Not Found",
       },
+
+      _restricted: {
+        Component: RestrictedPage,
+        documentTitle: "Restricted",
+      },
     },
+  },
+
+  // TODO: think about how this should handled. Is it Ok to use tsx for this file?
+  _restricted: {
+    Component: () => (
+      <SiteLayout>
+        <RestrictedPage />
+      </SiteLayout>
+    ),
+    documentTitle: "Restricted",
   },
 
   site: {
