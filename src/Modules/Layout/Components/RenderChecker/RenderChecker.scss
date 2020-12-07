@@ -1,25 +1,36 @@
 .renderChecker {
-  display: flex;
+  .inner {
+    display: inline-flex;
+    align-items: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
 
-  .btnWrapper {
-    display: inline-block;
+    .btnWrapper {
+      display: inline-block;
 
-    button {
-      padding: 4px 5px;
-      border: 0;
-      background: #eee;
-      border: 2px solid #000;
+      button {
+        padding: 4px 5px;
+        border: 0;
+        background: #eee;
+        border: 2px solid #000;
+      }
     }
-  }
 
-  > span {
-    display: inline-block;
-    padding: 4px 5px;
-    background: #16a316;
-    border: 2px solid #000;
+    > span {
+      display: inline-block;
+      margin-right: 5px;
+      color: #fff;
 
-    &.initial {
-      background-color: #ad2e2e;
+      &.counter {
+        padding: 4px 5px;
+        background: #16a316;
+        border: 2px solid #000;
+        color: #000;
+
+        &.initial {
+          background-color: #ad2e2e;
+        }
+      }
     }
   }
 }

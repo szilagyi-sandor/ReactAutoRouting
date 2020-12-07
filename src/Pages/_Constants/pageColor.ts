@@ -1,1 +1,1 @@
-export const pageColor = "#f3b647";
+export const pageColor = "#ff5a25";

@@ -1,35 +1,28 @@
 import { HandledAuthTypes } from "./HandledAuthTypes";
 
+// This is extendable from outside.
 export type AuthRule =
-  | RequiredLevelAuthRule
-  | AcceptedRolesAuthRule
-  | ExcludedRolesAuthRule
-  | ExtraAuthRule;
+  | RequiredLevelAR
+  | AcceptedRolesAR
+  | ExcludedRolesAR
+  | AdditionalAR;
 
-// Rule for the minimal access level required. This assumes, higher Role has higher RoleValue.
-export interface RequiredLevelAuthRule {
+export interface RequiredLevelAR {
   type: HandledAuthTypes["requiredLevel"];
   level: number;
 }
 
-// Rule for which roles are accepted.
-export interface AcceptedRolesAuthRule {
+export interface AcceptedRolesAR {
   type: HandledAuthTypes["acceptedRoles"];
   roles: number[];
 }
 
-// Rule for which roles are not accepted.
-export interface ExcludedRolesAuthRule {
+export interface ExcludedRolesAR {
   type: HandledAuthTypes["excludedRoles"];
   roles: number[];
 }
 
-export interface ExcludedRolesAuthRule {
-  type: HandledAuthTypes["excludedRoles"];
-  roles: number[];
-}
-
-export interface ExtraAuthRule {
+export interface AdditionalAR {
   type: string;
   args: any;
 }

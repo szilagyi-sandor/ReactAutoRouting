@@ -1,55 +1,50 @@
-import { getRoutePath } from "../ReactAutoRouting/_Helpers/getRoutePath";
+import { getRoutePath } from "../ReactAutoRouting/_Helpers/PathHandlers/getRoutePath";
 import { routes } from "./routes";
 
-const { admin, site } = routes;
-// Admin pages
+const { dev } = routes;
+const { test1, admin, site } = dev.children;
+
+// Admin pages.
+const { home, routeSetter, menuSetter, superSecret, purple } = admin.children;
+const { test1: purpleTest1 } = purple.children;
+
+// Site pages.
 const {
-  home: adminHomePage,
-  test2: adminTest2Page,
-  green: adminGreen,
-} = admin.children;
+  home: siteHome,
+  about,
+  contact,
+  api,
+  registration,
+  login,
+  purple: sitePurple,
+} = site.children;
+const { test2, purple: sitePurplePurple } = sitePurple.children;
+const { test1: sitePurplePurpleTest1 } = sitePurplePurple.children;
 
-// Admin-Green pages
-const {
-  test1: adminGreenTest1Page,
-  test2: adminGreenTest2Page,
-} = adminGreen.children;
-
-// Site pages
-const { home: siteHomePage, green: siteGreen, red: siteRed } = site.children;
-
-// Site-Green pages
-const {
-  test1: siteGreenTest1Page,
-  test2: siteGreenTest2Page,
-} = siteGreen.children;
-
-const { green: SiteRedGreen } = siteRed.children;
-
-const { test1: siteRedGreenTest1Page } = SiteRedGreen.children;
-
-// TODO: Make this automatic
+// TODO: make this automatic!
 export const routePaths = {
+  test1: getRoutePath(routes, test1),
   admin: {
-    homePage: getRoutePath(adminHomePage),
-    test2Page: getRoutePath(adminTest2Page),
-    green: {
-      test1Page: getRoutePath(adminGreenTest1Page),
-      test2Page: getRoutePath(adminGreenTest2Page),
+    home: getRoutePath(routes, home),
+    routeSetter: getRoutePath(routes, routeSetter),
+    menuSetter: getRoutePath(routes, menuSetter),
+    superSecret: getRoutePath(routes, superSecret),
+    purple: {
+      test1: getRoutePath(routes, purpleTest1),
     },
   },
 
   site: {
-    homePage: getRoutePath(siteHomePage),
-
-    green: {
-      test1Page: getRoutePath(siteGreenTest1Page),
-      test2Page: getRoutePath(siteGreenTest2Page),
-    },
-
-    red: {
-      green: {
-        test1Page: getRoutePath(siteRedGreenTest1Page),
+    home: getRoutePath(routes, siteHome),
+    about: getRoutePath(routes, about),
+    contact: getRoutePath(routes, contact),
+    api: getRoutePath(routes, api),
+    registration: getRoutePath(routes, registration),
+    login: getRoutePath(routes, login),
+    purple: {
+      test2: getRoutePath(routes, test2),
+      purple: {
+        test1: getRoutePath(routes, sitePurplePurpleTest1),
       },
     },
   },

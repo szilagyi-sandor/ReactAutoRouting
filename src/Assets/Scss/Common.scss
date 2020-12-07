@@ -13,6 +13,16 @@ html {
     text-align: left;
     background: $backgroundColor;
     color: $color;
+
+    #App {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+
+      > .renderChecker {
+        text-align: center;
+      }
+    }
   }
 }
 
@@ -47,4 +57,8 @@ h4,
 h5,
 h6 {
   margin: 0 0 20px 0;
+}
+
+pre {
+  color: #fff;
 }

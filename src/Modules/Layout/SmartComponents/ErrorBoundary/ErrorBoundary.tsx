@@ -1,4 +1,4 @@
-import ErrorPage from "Pages/Error/ErrorPage";
+import ErrorPage from "Pages/Common/Error/ErrorPage";
 import React, { Component, ErrorInfo } from "react";
 
 import { ErrorBoundaryState } from "./interfaces";

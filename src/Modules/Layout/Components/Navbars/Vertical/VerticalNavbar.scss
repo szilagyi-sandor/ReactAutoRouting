@@ -1,0 +1,61 @@
+@import "assets/scss/Variables";
+
+.verticalNavbar {
+  background-color: $secondaryBackgroundColor;
+  display: block;
+  width: 100%;
+
+  nav {
+    overflow: auto;
+
+    .navbarBrand {
+      font-size: 24px;
+      padding: 15px 20px;
+      margin: 0;
+
+      a {
+        text-decoration: none;
+        border-top: 2px solid transparent;
+        color: $color;
+        transition: color 320ms linear;
+
+        &.active,
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      display: block;
+
+      li {
+        display: block;
+
+        a {
+          display: block;
+          padding: 10px 20px;
+          border-bottom: 4px solid;
+          text-decoration: none;
+
+          span {
+            color: #fff;
+          }
+
+          &.active,
+          &:hover {
+            span {
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+  .renderChecker {
+    padding: 10px 20px;
+  }
+}

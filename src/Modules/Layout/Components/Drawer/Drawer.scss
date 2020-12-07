@@ -1,0 +1,73 @@
+@import "Assets/Scss/Variables";
+
+.drawer {
+  position: absolute;
+  z-index: 2000;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  width: 45px;
+  overflow: hidden;
+  transition: width 500ms ease-in;
+
+  &.open {
+    width: 545px;
+  }
+
+  > .btnWrapper {
+    display: flex;
+    align-items: center;
+
+    > button {
+      pointer-events: auto;
+      background: none;
+      background-color: $secondaryBackgroundColor;
+      outline: none;
+      width: 45px;
+      height: 45px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 25px;
+        height: 25px;
+        fill: inherit;
+        transition: transform 400ms linear;
+      }
+
+      &.hasAnimation {
+        svg {
+          animation: openMe 400ms linear infinite alternate;
+        }
+      }
+
+      &.open {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  > .inner {
+    pointer-events: auto;
+    width: 500px;
+    max-width: 100vw;
+    background-color: $secondaryBackgroundColor;
+    overflow: auto;
+    padding: 15px;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes openMe {
+  from {
+    transform: translate(2px, 0px);
+  }
+  to {
+    transform: translate(-2px, 0px);
+  }
+}

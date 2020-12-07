@@ -1,8 +1,7 @@
-// TODO: add this properly (extends RouteMapperProps + add own if there's any)
-
 import { RouteMapperProps } from "../RouteMapper/interfaces";
 
-// TODO: maybe not even needed
+// This will be extended by auth stuff, so it can be handled
+// at component level.
 export interface LayoutProps {
   routeMapperProps?: RouteMapperProps;
 }

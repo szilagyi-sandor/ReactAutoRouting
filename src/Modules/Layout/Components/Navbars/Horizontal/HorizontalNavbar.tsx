@@ -1,29 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./HorizontalNavbar.scss";
 
 import { HorizontalNavbarProps } from "./interfaces";
 import { Container, Nav, Navbar, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import RenderChecker from "../../RenderChecker/RenderChecker";
 
 export default function HorizontalNavbar({
   items,
   navbarBrand,
   color,
 }: HorizontalNavbarProps) {
+  const [number, setNumber] = useState(0);
+
   return (
-    <div
-      className="horizontalNavbar"
-      style={{ borderBottom: `4px solid ${color}` }}
-    >
+    <div className="horizontalNavbar">
       <Container>
         <Navbar expand="md">
           {navbarBrand && (
-            <h1 className="navbarBrand navbar-brand" style={{ color }}>
+            <h2 className="navbarBrand navbar-brand" style={{ color }}>
               <NavLink to={navbarBrand.url} exact>
                 {navbarBrand.text}
               </NavLink>
-            </h1>
+            </h2>
           )}
 
           <Nav className="ml-auto" navbar>
@@ -41,6 +41,14 @@ export default function HorizontalNavbar({
             ))}
           </Nav>
         </Navbar>
+      </Container>
+
+      <Container>
+        <RenderChecker
+          number={number}
+          setNumber={(val) => setNumber(val)}
+          label="Navbar:"
+        />
       </Container>
     </div>
   );
