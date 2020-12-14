@@ -10,6 +10,7 @@ import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMappe
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { matchPath, useLocation } from "react-router-dom";
 import { getAllRoutePaths } from "Modules/Routing/ReactAutoRouting/_Helpers/PathHandlers/getAllRoutePaths";
+import { mockedUserInfo } from "Utils/mocks";
 
 function App() {
   const [number, setNumber] = useState(0);
@@ -35,16 +36,16 @@ function App() {
         <RouteMapper
           routeObj={routes}
           suspenseFallback={<SimpleLoader color={appLayoutColor} />}
-          userInfo={{
-            id: 1,
-            role: 1,
+          userInfo={mockedUserInfo}
+          drilledProps={{
+            test: "test",
           }}
         />
 
         <RenderChecker
           number={number}
           setNumber={(val) => setNumber(val)}
-          label="App:"
+          label="App"
         />
       </ErrorBoundary>
     </div>

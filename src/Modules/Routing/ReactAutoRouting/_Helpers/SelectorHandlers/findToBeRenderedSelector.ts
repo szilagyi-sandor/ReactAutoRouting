@@ -1,5 +1,5 @@
 import { matchPath } from "react-router-dom";
-import { Route } from "../../_Interfaces/Route";
+import { Route } from "../../_Interfaces/Routes/Route";
 import { getNestedItem } from "../ItemGetters/getNestedItem";
 import { getAllRoutePaths } from "../PathHandlers/getAllRoutePaths";
 
@@ -24,6 +24,6 @@ export const findToBeRenderedSelector = (
     }
   }
 
-  // No matching route
+  // No matching route.
   return undefined;
 };

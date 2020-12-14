@@ -1,25 +1,25 @@
-import { createRoutes } from "../ReactAutoRouting/_Helpers/createRoutes";
-import { processRoutes } from "../ReactAutoRouting/_Helpers/processRoutes";
-import { handledAuthTypes } from "../__ReactAutoRouting/_Constants/handledAuthTypes";
+import { handledAuthTypes } from "../ReactAutoRouting/_Constants/handledAuthTypes";
+import { createRoutes } from "../ReactAutoRouting/_Helpers/RouteHandlers/createRoutes";
+import { processRoutes } from "../ReactAutoRouting/_Helpers/RouteHandlers/processRoutes";
 import { lazyLayouts } from "./lazyLayouts";
 import { lazyPages } from "./lazyPages";
 
-// Order matters here!
+// Order matters here.
 export const unprocessedRoutes = createRoutes({
-  // DEV LAYOUT
+  // DEV LAYOUT.
   dev: {
     Component: lazyLayouts.Dev,
     paths: [""],
     children: {
-      // ADMIN LAYOUT
+      // ADMIN LAYOUT.
       admin: {
         Component: lazyLayouts.Admin,
         paths: ["/admin"],
         documentTitle: "Admin - ",
-        // authRule: {
-        //   type: handledAuthTypes.requiredLevel,
-        //   level: 2,
-        // },
+        authRule: {
+          type: handledAuthTypes.requiredLevel,
+          level: 2,
+        },
         children: {
           home: {
             Component: lazyPages.AdminHome,
@@ -43,36 +43,9 @@ export const unprocessedRoutes = createRoutes({
             Component: lazyPages.SuperSecret,
             documentTitle: "Super secret",
             paths: ["/super-secret", "/secret"],
-          },
-
-          // TODO: remove
-          // Testing on admin.
-          purple: {
-            Component: lazyLayouts.Purple,
-            documentTitle: "Purple - ",
-            paths: ["/purple", "/half-purple"],
-            children: {
-              test1: {
-                Component: lazyPages.Test1,
-                documentTitle: "Test-1",
-                paths: ["/test-1", "/t-1"],
-                authRule: {
-                  type: handledAuthTypes.requiredLevel,
-                  level: 3,
-                },
-              },
-
-              notFound: {
-                Component: lazyPages.AdminNotFound,
-                documentTitle: "Not found",
-                paths: ["*"],
-              },
-
-              _restricted: {
-                Component: lazyPages.Restricted,
-                documentTitle: "Test purple restriction",
-                // paths: ["*"],
-              },
+            authRule: {
+              type: handledAuthTypes.requiredLevel,
+              level: 3,
             },
           },
 
@@ -83,21 +56,13 @@ export const unprocessedRoutes = createRoutes({
           },
 
           _restricted: {
-            Component: lazyPages.Restricted,
-            documentTitle: "Test admin restriction",
+            Component: lazyPages.AdminRestricted,
+            documentTitle: "Restricted Page",
           },
         },
       },
 
-      // Testing a page on dev level.
-      // TODO: remove
-      test1: {
-        Component: lazyPages.Test1,
-        documentTitle: "Test-1",
-        paths: ["/test-1", "/t-1"],
-      },
-
-      // SITE LAYOUT
+      // SITE LAYOUT.
       site: {
         Component: lazyLayouts.Site,
         paths: [""],
@@ -146,34 +111,6 @@ export const unprocessedRoutes = createRoutes({
             },
           },
 
-          // TODO: remove
-          // Testing on site.
-          purple: {
-            Component: lazyLayouts.Purple,
-            documentTitle: "Purple - ",
-            paths: ["/purple", "/half-purple"],
-            children: {
-              test2: {
-                Component: lazyPages.Test2,
-                documentTitle: "Test-2",
-                paths: [""],
-              },
-
-              purple: {
-                Component: lazyLayouts.Purple,
-                documentTitle: "Purple - ",
-                paths: ["/purple", "/half-purple"],
-                children: {
-                  test1: {
-                    Component: lazyPages.Test1,
-                    documentTitle: "Test-1",
-                    paths: [""],
-                  },
-                },
-              },
-            },
-          },
-
           notFound: {
             Component: lazyPages.NotFound,
             documentTitle: "Not found",
@@ -187,7 +124,7 @@ export const unprocessedRoutes = createRoutes({
         children: {
           _restricted: {
             Component: lazyPages.Restricted,
-            documentTitle: "Root restricted",
+            documentTitle: "Restricted Page",
           },
         },
       },

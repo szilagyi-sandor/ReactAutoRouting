@@ -1,3 +1,5 @@
+@import "assets/scss/Variables";
+
 .renderChecker {
   .inner {
     display: inline-flex;
@@ -11,21 +13,21 @@
       button {
         padding: 4px 5px;
         border: 0;
-        background: #eee;
-        border: 2px solid #000;
+        background: $color;
+        border: 2px solid $backgroundColor;
       }
     }
 
     > span {
       display: inline-block;
       margin-right: 5px;
-      color: #fff;
+      color: $color;
 
       &.counter {
         padding: 4px 5px;
         background: #16a316;
-        border: 2px solid #000;
-        color: #000;
+        border: 2px solid $backgroundColor;
+        color: $backgroundColor;
 
         &.initial {
           background-color: #ad2e2e;

@@ -17,8 +17,11 @@ export const lazyPages = {
   MenuSetter: lazy(() => import("Pages/Admin/MenuSetter/MenuSetterPage")),
   SuperSecret: lazy(() => import("Pages/Admin/SuperSecret/SuperSecretPage")),
   AdminNotFound: lazy(() => import("Pages/Admin/NotFound/AdminNotFoundPage")),
+  AdminRestricted: lazy(
+    () => import("Pages/Admin/Restricted/AdminRestrictedPage")
+  ),
 
-  // Test pages:
+  // Test pages.
   Test1: lazy(() => import("Pages/Test/Test1/Test1Page")),
   Test2: lazy(() => import("Pages/Test/Test2/Test2Page")),
 };

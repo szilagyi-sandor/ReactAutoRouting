@@ -1,7 +1,8 @@
-import { getCombinations } from "Modules/Routing/__ReactAutoRouting/_Helpers/combinations";
-import { Route } from "../../_Interfaces/Route";
+import { Route } from "../../_Interfaces/Routes/Route";
+import { getCombinations } from "../Generic/combinations";
 import { createAllRoutePaths } from "./createAllRoutePaths";
 
+// Gets all route paths and return them as an array.
 export const getAllRoutePaths = (
   routeObj: Record<string, Route>,
   route: Route

@@ -1,4 +1,4 @@
-import { NestableObject } from "../../_Interfaces/NestableObject";
+import { NestableObject } from "../../_Interfaces/Generic/NestableObject";
 
 // This function gives back the item by reference.
 export const getNestedItem = <T extends NestableObject<T>>(

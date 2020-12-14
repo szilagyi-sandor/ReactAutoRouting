@@ -13,7 +13,7 @@ export default class ErrorBoundary extends Component<{}, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // TODO: log front end errors
+    // A good place to log unexpected errors.
   }
 
   render() {

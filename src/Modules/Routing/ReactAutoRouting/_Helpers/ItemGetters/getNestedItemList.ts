@@ -1,4 +1,4 @@
-import { NestableObject } from "../../_Interfaces/NestableObject";
+import { NestableObject } from "../../_Interfaces/Generic/NestableObject";
 import { getNestedItem } from "./getNestedItem";
 
 // This function gives back all the items with reference.

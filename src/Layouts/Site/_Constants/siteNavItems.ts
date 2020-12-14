@@ -4,44 +4,30 @@ import { routePaths } from "Modules/Routing/_Constants/routePaths";
 export const siteNavItems: NavItem[] = [
   {
     text: "About",
-    url: routePaths.site.about,
-  },
-  {
-    text: "Contact",
-    url: routePaths.site.contact,
+    url: routePaths.about,
   },
   {
     text: "Api",
-    url: routePaths.site.api,
+    url: routePaths.api,
+  },
+  {
+    text: "Contact",
+    url: routePaths.contact,
   },
   {
     text: "Registration",
-    url: routePaths.site.registration,
+    url: routePaths.registration,
   },
   {
     text: "Login",
-    url: routePaths.site.login,
-  },
-  {
-    text: "Admin",
-    url: routePaths.admin.home,
-  },
-
-  // TODO: remove:
-  {
-    text: "Test1",
-    url: routePaths.test1,
-  },
-  {
-    text: "Purple test2",
-    url: routePaths.site.purple.test2,
-  },
-  {
-    text: "Nested purple test1",
-    url: routePaths.site.purple.purple.test1,
+    url: routePaths.login,
   },
   {
     text: "Not found",
     url: "/not-found",
+  },
+  {
+    text: "Admin",
+    url: routePaths.adminHome,
   },
 ];

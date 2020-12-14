@@ -6,8 +6,8 @@ import { devLayoutColor } from "./_Constants/devLayoutColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { Container } from "reactstrap";
 import Drawer from "Modules/Layout/Components/Drawer/Drawer";
-import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/LayoutProps";
-import { clearRouteProps } from "./_helpers/clearRouteProps";
+import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
+import { clearRouteProps } from "./_Helpers/clearRouteProps";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 

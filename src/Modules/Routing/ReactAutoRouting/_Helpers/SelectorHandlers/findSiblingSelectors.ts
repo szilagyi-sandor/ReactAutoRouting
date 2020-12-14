@@ -1,15 +1,17 @@
-import { checkIfSelectorsAreSiblings } from "./checkIfSelectorsAreSiblings";
+import { checkSelectorsSiblingRelation } from "./checkSelectorsSiblingRelation";
 
 export const findSiblingSelectors = (
-  selectors: string[][],
-  child: string[],
+  allSelectors: string[][],
+  selector: string[],
   includeCurrent = true
 ): string[][] => {
   const output: string[][] = [];
 
-  selectors.forEach((selector) => {
-    if (checkIfSelectorsAreSiblings(selector, child, includeCurrent)) {
-      output.push(selector);
+  allSelectors.forEach((currentSelector) => {
+    if (
+      checkSelectorsSiblingRelation(currentSelector, selector, includeCurrent)
+    ) {
+      output.push(currentSelector);
     }
   });
 

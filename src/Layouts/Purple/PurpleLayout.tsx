@@ -4,14 +4,15 @@ import "./PurpleLayout.scss";
 
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { purpleLayoutColor } from "./_Constants/purpleLayoutColor";
-import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/LayoutProps";
+import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
-import { createPurpleBackground } from "./_Constants/createPurpleBackground";
+import { createPurpleBackground } from "./_Helpers/createPurpleBackground";
 
 export default function PurpleLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
   const borderStyle = `4px solid ${purpleLayoutColor}`;
+
   return (
     <div className="purpleLayout" style={{ border: borderStyle }}>
       <div
@@ -22,8 +23,6 @@ export default function PurpleLayout({ routeMapperProps }: LayoutProps) {
       />
 
       <div className="content">
-        {/* This dev keeps the footer at the bottom, until
-        RouteMapper returns something */}
         <div className="inner">
           {routeMapperProps && (
             <RouteMapper

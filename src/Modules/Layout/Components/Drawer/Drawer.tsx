@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from "react";
 
 import "./Drawer.scss";
 
-import { ReactComponent as ArrowLeft } from "Assets/Images/leftArrow.svg";
+import { ReactComponent as ArrowLeft } from "Assets/Images/Left.svg";
 
 import { DrawerProps } from "./interfaces";
 import { openedStorageName } from "./_Constants/openedStorageName";

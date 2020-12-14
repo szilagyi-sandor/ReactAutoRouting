@@ -1,10 +1,10 @@
-import { checkSelectorsRelation } from "./checkSelectorsRelation";
+import { checkSelectorsParentChildRelation } from "./checkSelectorsParentChildRelation";
 
 export const checkIfSelectorIsParent = (
   selector: string[],
   allSelectors: string[][]
 ): boolean => {
-  // all selectors must have the current selector
+  // All selectors must have the current selector and at least 1 more.
   if (allSelectors.length < 2) {
     return false;
   }
@@ -12,7 +12,7 @@ export const checkIfSelectorIsParent = (
   for (let i = 0; i < allSelectors.length; i++) {
     const possibleChild = allSelectors[i];
     if (
-      checkSelectorsRelation(selector, possibleChild) &&
+      checkSelectorsParentChildRelation(selector, possibleChild) &&
       possibleChild.length > selector.length
     ) {
       return true;

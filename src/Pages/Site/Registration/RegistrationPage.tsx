@@ -6,6 +6,7 @@ import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 
+// TODO: this page will contain the info of the possible users to login with.
 export default function RegistrationPage() {
   const [number, setNumber] = useState(0);
 

@@ -1,5 +1,5 @@
 import { checkIfSelectorIsParent } from "./checkIfSelectorIsParent";
-import { checkSelectorsRelation } from "./checkSelectorsRelation";
+import { checkSelectorsParentChildRelation } from "./checkSelectorsParentChildRelation";
 
 // Filters out the selectors that has children. If the items array is ordered properly,
 // there's no need to check each item against the others, it's enough to check against
@@ -17,7 +17,10 @@ export const filterParentSelectors = (
       }
     } else {
       const possibleChild = selectors[i + 1];
-      if (!possibleChild || !checkSelectorsRelation(selector, possibleChild)) {
+      if (
+        !possibleChild ||
+        !checkSelectorsParentChildRelation(selector, possibleChild)
+      ) {
         output.push(selector);
       }
     }

@@ -1,5 +1,7 @@
-import { Route } from "../../_Interfaces/Route";
+import { Route } from "../../_Interfaces/Routes/Route";
 
+// Gets all the paths properties from a list of routes and returns them in an array.
+// This is used as a helper function in internal helpers.
 export const createPathsFromRouteList = (routeList: Route[]) => {
   const output: string[][] = [];
 

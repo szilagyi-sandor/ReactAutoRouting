@@ -21,6 +21,16 @@ html {
 
       > .renderChecker {
         text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        > div {
+          font-weight: 700;
+
+          &.inner {
+            font-weight: 400;
+          }
+        }
       }
     }
   }
@@ -60,5 +70,5 @@ h6 {
 }
 
 pre {
-  color: #fff;
+  color: $color;
 }

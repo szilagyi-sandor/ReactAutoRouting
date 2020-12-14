@@ -1,7 +1,8 @@
-import { Route } from "../../_Interfaces/Route";
-import { getCombinations } from "../combinations";
+import { Route } from "../../_Interfaces/Routes/Route";
+import { getCombinations } from "../Generic/combinations";
 import { createAllRoutePaths } from "./createAllRoutePaths";
 
+// Gets one route path that is selectable with the index.
 export const getRoutePath = (
   routeObj: Record<string, Route>,
   route: Route,

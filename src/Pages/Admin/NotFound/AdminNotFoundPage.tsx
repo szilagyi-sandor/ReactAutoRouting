@@ -6,7 +6,6 @@ import { pageColor } from "Pages/_Constants/pageColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { Container } from "reactstrap";
 
-// TODO: add something funny
 export default function AdminNotFoundPage() {
   const [number, setNumber] = useState(0);
 

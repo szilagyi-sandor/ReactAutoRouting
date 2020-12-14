@@ -1,4 +1,4 @@
-import { HandledAuthTypes } from "../_Interfaces/HandledAuthTypes";
+import { HandledAuthTypes } from "../_Interfaces/Auth/HandledAuthTypes";
 
 export const handledAuthTypes: HandledAuthTypes = {
   requiredLevel: 1,

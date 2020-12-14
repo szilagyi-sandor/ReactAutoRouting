@@ -1,9 +1,7 @@
-import { deepMapNestedObject } from "Modules/Routing/ReactAutoRouting/_Helpers/deepMapNestedObject";
+import { deepMapNestedObject } from "Modules/Routing/ReactAutoRouting/_Helpers/Generic/deepMapNestedObject";
 import { getNestedItem } from "Modules/Routing/ReactAutoRouting/_Helpers/ItemGetters/getNestedItem";
-import { Route } from "Modules/Routing/ReactAutoRouting/_Interfaces/Route";
-import { RouteBase } from "Modules/Routing/ReactAutoRouting/_Interfaces/RouteBase";
-
-type RoutePartial = Partial<RouteBase<RoutePartial>>;
+import { Route } from "Modules/Routing/ReactAutoRouting/_Interfaces/Routes/Route";
+import { RoutePartial } from "Modules/Routing/ReactAutoRouting/_Interfaces/Routes/RoutePartial";
 
 export const clearRouteProps = (routeObj: Record<string, Route>) => {
   const output: Record<string, RoutePartial> = { ...routeObj };

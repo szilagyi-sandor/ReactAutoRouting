@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState } from "react";
+import React, { useState } from "react";
 
 import "./SiteLayout.scss";
 
@@ -10,12 +10,9 @@ import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
-import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/LayoutProps";
+import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
 
-export default function SiteLayout({
-  routeMapperProps,
-  children,
-}: PropsWithChildren<LayoutProps>) {
+export default function SiteLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
 
   return (
@@ -29,7 +26,7 @@ export default function SiteLayout({
           items={siteNavItems}
           navbarBrand={{
             text: "ReactAutoRouting",
-            url: routePaths.site.home,
+            url: routePaths.home,
           }}
         />
       </header>
@@ -41,8 +38,6 @@ export default function SiteLayout({
             suspenseFallback={<SimpleLoader color={siteLayoutColor} />}
           />
         )}
-
-        {children && children}
       </main>
 
       <footer style={{ borderTop: `4px solid ${siteLayoutColor}` }}>

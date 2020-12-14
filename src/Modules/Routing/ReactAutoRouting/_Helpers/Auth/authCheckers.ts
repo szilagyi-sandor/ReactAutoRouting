@@ -5,8 +5,8 @@ import {
   RequiredLevelAR,
   AcceptedRolesAR,
   ExcludedRolesAR,
-} from "../../_Interfaces/AuthRule";
-import { UserInfo } from "../../_Interfaces/UserInfo";
+} from "../../_Interfaces/Auth/AuthRule";
+import { UserInfo } from "../../_Interfaces/Auth/UserInfo";
 
 export function checkAuth(rule: AuthRule, userInfo?: UserInfo) {
   switch (rule.type) {
