@@ -13,7 +13,7 @@ export const lazyPages = {
 
   // Admin pages.
   AdminHome: lazy(() => import("Pages/Admin/Home/AdminHomePage")),
-  RouteSetter: lazy(() => import("Pages/Admin/RouteSetter/RouteSettterPage")),
+  RouteSetter: lazy(() => import("Pages/Admin/RouteSetter/RouteSetterPage")),
   MenuSetter: lazy(() => import("Pages/Admin/MenuSetter/MenuSetterPage")),
   SuperSecret: lazy(() => import("Pages/Admin/SuperSecret/SuperSecretPage")),
   AdminNotFound: lazy(() => import("Pages/Admin/NotFound/AdminNotFoundPage")),

@@ -10,14 +10,20 @@ import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import { mockedUsers } from "Modules/Auth/mock";
 import { getEnumObjById } from "_Helpers/EnumHelpers/getEnumObjById";
 import { roles } from "Modules/Auth/_Constants/roles";
+import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
-export default function RegistrationPage() {
+export default function RegistrationPage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
+
+  const _pageColor: string =
+    drilledProps && drilledProps.appColors && drilledProps.appColors.page
+      ? drilledProps.appColors.page
+      : pageColor;
 
   return (
     <section
       className="registrationPage"
-      style={{ border: `4px solid ${pageColor}` }}
+      style={{ border: `4px solid ${_pageColor}` }}
     >
       <header>
         <Container>

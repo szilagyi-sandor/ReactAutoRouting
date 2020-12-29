@@ -19,11 +19,16 @@ export default function RestrictedPage({ route, drilledProps }: PageProps) {
       ? drilledProps.user
       : defaultUser;
 
+  const _pageColor: string =
+    drilledProps && drilledProps.appColors && drilledProps.appColors.page
+      ? drilledProps.appColors.page
+      : pageColor;
+
   if (user.role > 0) {
     return (
       <section
         className="restrictedPage"
-        style={{ border: `4px solid ${pageColor}` }}
+        style={{ border: `4px solid ${_pageColor}` }}
       >
         <header>
           <Container>

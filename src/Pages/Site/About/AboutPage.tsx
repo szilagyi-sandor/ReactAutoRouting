@@ -5,12 +5,21 @@ import "./AboutPage.scss";
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
+import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
-export default function AboutPage() {
+export default function AboutPage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
 
+  const _pageColor: string =
+    drilledProps && drilledProps.appColors && drilledProps.appColors.page
+      ? drilledProps.appColors.page
+      : pageColor;
+
   return (
-    <section className="aboutPage" style={{ border: `4px solid ${pageColor}` }}>
+    <section
+      className="aboutPage"
+      style={{ border: `4px solid ${_pageColor}` }}
+    >
       <header>
         <Container>
           <h2>About page</h2>

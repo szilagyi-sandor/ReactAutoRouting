@@ -4,7 +4,6 @@ import "./App.scss";
 
 import ErrorBoundary from "Modules/Layout/SmartComponents/ErrorBoundary/ErrorBoundary";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
-import { appLayoutColor } from "_Constants/appLayoutColor";
 import { routes } from "Modules/Routing/_Constants/routes";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
@@ -14,6 +13,7 @@ import { checkAuth } from "Modules/Auth/_Helpers/checkAuth";
 import { initMockedUser } from "Modules/Auth/mock";
 import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 import { User } from "Modules/Auth/_Interfaces/User";
+import { getAppColors } from "_Helpers/AppColorHelpers/getAppColors";
 
 function App() {
   const [number, setNumber] = useState(0);
@@ -37,17 +37,21 @@ function App() {
     initMockedUser()
   );
 
+  const [appColors, setAppColors] = useState(getAppColors());
+
   const drilledProps: DrilledRouteProps = {
     user: mockedUser,
     setUser: setMockedUser,
+    appColors,
+    setAppColors,
   };
 
   return (
-    <div id="App" style={{ border: `4px solid ${appLayoutColor}` }}>
+    <div id="App" style={{ border: `4px solid ${appColors.app}` }}>
       <ErrorBoundary>
         <RouteMapper
           routeObj={routes}
-          suspenseFallback={<SimpleLoader color={appLayoutColor} />}
+          suspenseFallback={<SimpleLoader color={appColors.app} />}
           userInfo={mockedUser}
           drilledProps={drilledProps}
           authChecker={checkAuth}

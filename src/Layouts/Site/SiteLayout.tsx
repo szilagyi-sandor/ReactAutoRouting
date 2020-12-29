@@ -38,19 +38,27 @@ export default function SiteLayout({ routeMapperProps }: LayoutProps) {
       }
     : undefined;
 
-  const setUser: DrilledRouteProps["setUser"] =
+  const setUser: DrilledRouteProps["setUser"] | undefined =
     routeMapperProps &&
     routeMapperProps.drilledProps &&
     routeMapperProps.drilledProps.setUser;
 
+  const _siteLayoutColor: string =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.appColors &&
+    routeMapperProps.drilledProps.appColors.site
+      ? routeMapperProps.drilledProps.appColors.site
+      : siteLayoutColor;
+
   return (
     <section
       className="siteLayout"
-      style={{ border: `4px solid ${siteLayoutColor}` }}
+      style={{ border: `4px solid ${_siteLayoutColor}` }}
     >
-      <header style={{ borderBottom: `4px solid ${siteLayoutColor}` }}>
+      <header style={{ borderBottom: `4px solid ${_siteLayoutColor}` }}>
         <HorizontalNavbar
-          color={siteLayoutColor}
+          color={_siteLayoutColor}
           items={filterRestrictedNavItems(siteNavItems, userInfo)}
           navbarBrand={{
             text: "ReactAutoRouting",
@@ -58,8 +66,10 @@ export default function SiteLayout({ routeMapperProps }: LayoutProps) {
           }}
           userInfo={navbarUserInfo}
           onLogout={() => {
-            setUser(undefined);
-            clearUserFromLocalStorage();
+            if (setUser) {
+              setUser(undefined);
+              clearUserFromLocalStorage();
+            }
           }}
         />
       </header>
@@ -68,14 +78,14 @@ export default function SiteLayout({ routeMapperProps }: LayoutProps) {
         {routeMapperProps && (
           <RouteMapper
             {...routeMapperProps}
-            suspenseFallback={<SimpleLoader color={siteLayoutColor} />}
+            suspenseFallback={<SimpleLoader color={_siteLayoutColor} />}
           />
         )}
       </main>
 
-      <footer style={{ borderTop: `4px solid ${siteLayoutColor}` }}>
+      <footer style={{ borderTop: `4px solid ${_siteLayoutColor}` }}>
         <Container>
-          <p className="layoutInfo" style={{ color: siteLayoutColor }}>
+          <p className="layoutInfo" style={{ color: _siteLayoutColor }}>
             Site Layout
           </p>
 

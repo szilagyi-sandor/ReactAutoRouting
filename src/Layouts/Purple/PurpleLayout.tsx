@@ -11,7 +11,16 @@ import { createPurpleBackground } from "./_Helpers/createPurpleBackground";
 
 export default function PurpleLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
-  const borderStyle = `4px solid ${purpleLayoutColor}`;
+
+  const _purpleLayoutColor: string =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.appColors &&
+    routeMapperProps.drilledProps.appColors.purple
+      ? routeMapperProps.drilledProps.appColors.purple
+      : purpleLayoutColor;
+
+  const borderStyle = `4px solid ${_purpleLayoutColor}`;
 
   return (
     <div className="purpleLayout" style={{ border: borderStyle }}>
@@ -27,13 +36,13 @@ export default function PurpleLayout({ routeMapperProps }: LayoutProps) {
           {routeMapperProps && (
             <RouteMapper
               {...routeMapperProps}
-              suspenseFallback={<SimpleLoader color={purpleLayoutColor} />}
+              suspenseFallback={<SimpleLoader color={_purpleLayoutColor} />}
             />
           )}
         </div>
 
         <div className="layoutInfo" style={{ borderTop: borderStyle }}>
-          <p style={{ color: purpleLayoutColor }}>Purple Layout</p>
+          <p style={{ color: _purpleLayoutColor }}>Purple Layout</p>
 
           <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </div>

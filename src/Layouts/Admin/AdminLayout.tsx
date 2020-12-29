@@ -38,29 +38,39 @@ export default function AdminLayout({ routeMapperProps }: LayoutProps) {
       }
     : undefined;
 
-  const setUser: DrilledRouteProps["setUser"] =
+  const setUser: DrilledRouteProps["setUser"] | undefined =
     routeMapperProps &&
     routeMapperProps.drilledProps &&
     routeMapperProps.drilledProps.setUser;
 
+  const _adminLayoutColor: string =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.appColors &&
+    routeMapperProps.drilledProps.appColors.admin
+      ? routeMapperProps.drilledProps.appColors.admin
+      : adminLayoutColor;
+
   return (
     <section
       className="adminLayout"
-      style={{ border: `4px solid ${adminLayoutColor}` }}
+      style={{ border: `4px solid ${_adminLayoutColor}` }}
     >
       <header>
         <div className="scrollHelper">
           <VerticalNavbar
             items={filterRestrictedNavItems(adminNavItems, userInfo)}
-            color={adminLayoutColor}
+            color={_adminLayoutColor}
             navbarBrand={{
               text: "Admin",
               url: routePaths.adminHome,
             }}
             userInfo={navbarUserInfo}
             onLogout={() => {
-              setUser(undefined);
-              clearUserFromLocalStorage();
+              if (setUser) {
+                setUser(undefined);
+                clearUserFromLocalStorage();
+              }
             }}
           />
         </div>
@@ -68,21 +78,21 @@ export default function AdminLayout({ routeMapperProps }: LayoutProps) {
 
       <div
         className="inner"
-        style={{ borderLeft: `4px solid ${adminLayoutColor}` }}
+        style={{ borderLeft: `4px solid ${_adminLayoutColor}` }}
       >
         <div className="scrollHelper">
           <main className="content">
             {routeMapperProps && (
               <RouteMapper
                 {...routeMapperProps}
-                suspenseFallback={<SimpleLoader color={adminLayoutColor} />}
+                suspenseFallback={<SimpleLoader color={_adminLayoutColor} />}
               />
             )}
           </main>
 
-          <footer style={{ borderTop: `4px solid ${adminLayoutColor}` }}>
+          <footer style={{ borderTop: `4px solid ${_adminLayoutColor}` }}>
             <Container>
-              <p className="layoutInfo" style={{ color: adminLayoutColor }}>
+              <p className="layoutInfo" style={{ color: _adminLayoutColor }}>
                 Admin Layout
               </p>
 

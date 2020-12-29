@@ -21,11 +21,19 @@ export default function LoginPage({ drilledProps }: PageProps) {
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const setUser: DrilledRouteProps["setUser"] =
+  const setUser: DrilledRouteProps["setUser"] | undefined =
     drilledProps && drilledProps.setUser;
 
+  const _pageColor: string =
+    drilledProps && drilledProps.appColors && drilledProps.appColors.page
+      ? drilledProps.appColors.page
+      : pageColor;
+
   return (
-    <section className="loginPage" style={{ border: `4px solid ${pageColor}` }}>
+    <section
+      className="loginPage"
+      style={{ border: `4px solid ${_pageColor}` }}
+    >
       <header>
         <Container>
           <h2>Login page</h2>

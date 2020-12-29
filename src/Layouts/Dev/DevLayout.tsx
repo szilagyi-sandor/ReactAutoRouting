@@ -15,17 +15,25 @@ import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 export default function DevLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
 
+  const _devLayoutColor: string =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.appColors &&
+    routeMapperProps.drilledProps.appColors.dev
+      ? routeMapperProps.drilledProps.appColors.dev
+      : devLayoutColor;
+
   return (
     <section
       className="devLayout"
-      style={{ border: `4px solid ${devLayoutColor}` }}
+      style={{ border: `4px solid ${_devLayoutColor}` }}
     >
       <header>
         <h1 className="sr-only">ReactAutoRouting </h1>
       </header>
 
       <div className="content">
-        <Drawer color={devLayoutColor}>
+        <Drawer color={_devLayoutColor}>
           <h2>Route object: </h2>
 
           {routeMapperProps && routeMapperProps.routeObj ? (
@@ -44,14 +52,14 @@ export default function DevLayout({ routeMapperProps }: LayoutProps) {
         {routeMapperProps && (
           <RouteMapper
             {...routeMapperProps}
-            suspenseFallback={<SimpleLoader color={devLayoutColor} />}
+            suspenseFallback={<SimpleLoader color={_devLayoutColor} />}
           />
         )}
       </div>
 
-      <footer style={{ borderTop: `4px solid ${devLayoutColor}` }}>
+      <footer style={{ borderTop: `4px solid ${_devLayoutColor}` }}>
         <Container>
-          <p className="layoutInfo" style={{ color: devLayoutColor }}>
+          <p className="layoutInfo" style={{ color: _devLayoutColor }}>
             Dev Layout
           </p>
 

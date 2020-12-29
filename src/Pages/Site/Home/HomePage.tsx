@@ -5,12 +5,18 @@ import "./HomePage.scss";
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
+import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
-export default function HomePage() {
+export default function HomePage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
 
+  const _pageColor: string =
+    drilledProps && drilledProps.appColors && drilledProps.appColors.page
+      ? drilledProps.appColors.page
+      : pageColor;
+
   return (
-    <section className="homePage" style={{ border: `4px solid ${pageColor}` }}>
+    <section className="homePage" style={{ border: `4px solid ${_pageColor}` }}>
       <header>
         <Container>
           <h2>Home page</h2>

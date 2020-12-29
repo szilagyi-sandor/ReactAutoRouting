@@ -6,17 +6,23 @@ import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { useParams } from "react-router-dom";
+import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
-export default function SuperSecretPage() {
+export default function SuperSecretPage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
 
   const { id } = useParams<{ id: string }>();
   const _id = Number.isInteger(+id) ? +id : null;
 
+  const _pageColor: string =
+    drilledProps && drilledProps.appColors && drilledProps.appColors.page
+      ? drilledProps.appColors.page
+      : pageColor;
+
   return (
     <section
       className="superSecretPage"
-      style={{ border: `4px solid ${pageColor}` }}
+      style={{ border: `4px solid ${_pageColor}` }}
     >
       <header>
         <Container fluid>
