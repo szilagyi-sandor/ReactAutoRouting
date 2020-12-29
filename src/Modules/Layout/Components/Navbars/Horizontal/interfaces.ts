@@ -7,4 +7,9 @@ export interface HorizontalNavbarProps {
     text: string;
     url: string;
   };
+  userInfo?: {
+    imgUrl?: string;
+    text: string;
+  };
+  onLogout?: () => void;
 }

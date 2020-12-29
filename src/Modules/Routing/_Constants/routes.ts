@@ -42,7 +42,7 @@ export const unprocessedRoutes = createRoutes({
           superSecret: {
             Component: lazyPages.SuperSecret,
             documentTitle: "Super secret",
-            paths: ["/super-secret", "/secret"],
+            paths: ["/super-secret/:id?", "/secret/:id?"],
             authRule: {
               type: handledAuthTypes.requiredLevel,
               level: 3,
@@ -104,7 +104,7 @@ export const unprocessedRoutes = createRoutes({
           login: {
             Component: lazyPages.Login,
             documentTitle: "Login",
-            paths: ["/Login", "/sign-in"],
+            paths: ["/login", "/sign-in"],
             authRule: {
               type: handledAuthTypes.acceptedRoles,
               roles: [0],

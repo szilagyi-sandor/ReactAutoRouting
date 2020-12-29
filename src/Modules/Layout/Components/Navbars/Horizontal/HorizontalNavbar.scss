@@ -51,4 +51,42 @@
       }
     }
   }
+
+  .userInfo {
+    display: inline-block;
+    margin-left: 30px;
+
+    .imgWrapper {
+      margin-bottom: 5px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #fff;
+        border-radius: 20px;
+        display: block;
+        margin: 0 auto;
+        object-fit: cover;
+      }
+    }
+
+    .text {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .btnWrapper {
+      text-align: center;
+
+      button {
+        border: 0;
+        padding: 0;
+        background: none;
+        color: #fff;
+        font-size: 14px;
+        padding: 0 5px;
+        text-decoration: underline;
+      }
+    }
+  }
 }

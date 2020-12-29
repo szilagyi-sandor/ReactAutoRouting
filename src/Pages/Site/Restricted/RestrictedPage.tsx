@@ -5,15 +5,21 @@ import "./RestrictedPage.scss";
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
-import { mockedUserInfo } from "Utils/mocks";
 import LoginPage from "../Login/LoginPage";
 import { handleAuthMessage } from "Modules/Routing/ReactAutoRouting/_Helpers/Auth/handleAuthMessage";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
+import { defaultUser } from "Modules/Auth/_Constants/defaultUser";
+import { User } from "Modules/Auth/_Interfaces/User";
 
 export default function RestrictedPage({ route, drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
 
-  if (mockedUserInfo.role > 0) {
+  const user: User =
+    drilledProps && drilledProps.user && drilledProps.user.role !== undefined
+      ? drilledProps.user
+      : defaultUser;
+
+  if (user.role > 0) {
     return (
       <section
         className="restrictedPage"
@@ -40,5 +46,5 @@ export default function RestrictedPage({ route, drilledProps }: PageProps) {
     );
   }
 
-  return <LoginPage />;
+  return <LoginPage route={route} drilledProps={drilledProps} />;
 }

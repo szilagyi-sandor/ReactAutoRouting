@@ -5,9 +5,13 @@ import "./SuperSecretPage.scss";
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
+import { useParams } from "react-router-dom";
 
 export default function SuperSecretPage() {
   const [number, setNumber] = useState(0);
+
+  const { id } = useParams<{ id: string }>();
+  const _id = Number.isInteger(+id) ? +id : null;
 
   return (
     <section
@@ -28,6 +32,8 @@ export default function SuperSecretPage() {
 
       <div className="content">
         <Container fluid>
+          {_id && <p>{`Url param: ${_id}`}</p>}
+
           <p>
             Mauris eget cursus felis, a facilisis ante. Vivamus ac orci eget
             ligula interdum sodales nec ac quam. Integer cursus mattis

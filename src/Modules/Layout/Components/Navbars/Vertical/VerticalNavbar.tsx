@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import "./VerticalNavbar.scss";
 
+import DefaultUserImgUrl from "Assets/Images/User.svg";
+
 import { VerticalNavbarProps } from "./interfaces";
 import { NavLink } from "react-router-dom";
 import RenderChecker from "../../RenderChecker/RenderChecker";
@@ -10,6 +12,8 @@ export default function VerticalNavbar({
   items,
   navbarBrand,
   color,
+  userInfo,
+  onLogout,
 }: VerticalNavbarProps) {
   const [number, setNumber] = useState(0);
 
@@ -25,6 +29,27 @@ export default function VerticalNavbar({
               {navbarBrand.text}
             </NavLink>
           </h2>
+        )}
+
+        {userInfo && (
+          <div style={{ borderColor: color }} className="userInfo">
+            <div className="imgWrapper">
+              <img
+                src={userInfo.imgUrl ? userInfo.imgUrl : DefaultUserImgUrl}
+                alt=""
+              />
+            </div>
+
+            <div className="inner">
+              <div className="text">{userInfo.text}</div>
+
+              {onLogout && (
+                <div className="btnWrapper">
+                  <button onClick={() => onLogout()}>logout</button>
+                </div>
+              )}
+            </div>
+          </div>
         )}
 
         <ul>

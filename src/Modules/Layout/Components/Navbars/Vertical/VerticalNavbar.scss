@@ -26,6 +26,42 @@
       }
     }
 
+    .userInfo {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 4px solid;
+
+      .imgWrapper {
+        margin-right: 8px;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border: 2px solid #fff;
+          border-radius: 20px;
+          display: block;
+          margin: 0 auto;
+          object-fit: cover;
+        }
+      }
+
+      .text {
+        font-size: 14px;
+      }
+
+      .btnWrapper {
+        button {
+          border: 0;
+          padding: 0;
+          background: none;
+          color: #fff;
+          font-size: 14px;
+          text-decoration: underline;
+        }
+      }
+    }
+
     ul {
       margin: 0;
       padding: 0;
@@ -55,6 +91,7 @@
       }
     }
   }
+
   .renderChecker {
     padding: 10px 20px;
   }

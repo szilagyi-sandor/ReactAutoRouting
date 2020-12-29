@@ -7,4 +7,9 @@ export interface VerticalNavbarProps {
     text: string;
     url: string;
   };
+  userInfo?: {
+    imgUrl?: string;
+    text: string;
+  };
+  onLogout?: () => void;
 }

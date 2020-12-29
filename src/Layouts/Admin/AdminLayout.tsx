@@ -11,9 +11,37 @@ import VerticalNavbar from "Modules/Layout/Components/Navbars/Vertical/VerticalN
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
+import { getEnumObjById } from "_Helpers/EnumHelpers/getEnumObjById";
+import { roles } from "Modules/Auth/_Constants/roles";
+import { filterRestrictedNavItems } from "_Helpers/filterRestrictedNavItems";
+import { clearUserFromLocalStorage } from "Modules/Auth/mock";
+import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 
 export default function AdminLayout({ routeMapperProps }: LayoutProps) {
   const [number, setNumber] = useState(0);
+
+  const userInfo =
+    routeMapperProps &&
+    routeMapperProps.userInfo &&
+    routeMapperProps.userInfo.role > 0
+      ? routeMapperProps.userInfo
+      : undefined;
+
+  const userName = userInfo && userInfo.name ? userInfo.name : "Unknown";
+  const userRole = userInfo && getEnumObjById(roles, userInfo.role);
+  const userRoleName = userRole ? userRole.name : "Unknown";
+
+  const navbarUserInfo = userInfo
+    ? {
+        imgUrl: userInfo.imgUrl,
+        text: `${userName} (${userRoleName})`,
+      }
+    : undefined;
+
+  const setUser: DrilledRouteProps["setUser"] =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.setUser;
 
   return (
     <section
@@ -23,11 +51,16 @@ export default function AdminLayout({ routeMapperProps }: LayoutProps) {
       <header>
         <div className="scrollHelper">
           <VerticalNavbar
-            items={adminNavItems}
+            items={filterRestrictedNavItems(adminNavItems, userInfo)}
             color={adminLayoutColor}
             navbarBrand={{
               text: "Admin",
               url: routePaths.adminHome,
+            }}
+            userInfo={navbarUserInfo}
+            onLogout={() => {
+              setUser(undefined);
+              clearUserFromLocalStorage();
             }}
           />
         </div>

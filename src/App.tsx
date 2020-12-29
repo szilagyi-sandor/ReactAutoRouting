@@ -10,7 +10,10 @@ import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMappe
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { matchPath, useLocation } from "react-router-dom";
 import { getAllRoutePaths } from "Modules/Routing/ReactAutoRouting/_Helpers/PathHandlers/getAllRoutePaths";
-import { mockedUserInfo } from "Utils/mocks";
+import { checkAuth } from "Modules/Auth/_Helpers/checkAuth";
+import { initMockedUser } from "Modules/Auth/mock";
+import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
+import { User } from "Modules/Auth/_Interfaces/User";
 
 function App() {
   const [number, setNumber] = useState(0);
@@ -30,16 +33,24 @@ function App() {
     console.log(`Layout rendered: ${adminOrSiteLayout}`);
   }, [adminOrSiteLayout]);
 
+  const [mockedUser, setMockedUser] = useState<User | undefined>(
+    initMockedUser()
+  );
+
+  const drilledProps: DrilledRouteProps = {
+    user: mockedUser,
+    setUser: setMockedUser,
+  };
+
   return (
     <div id="App" style={{ border: `4px solid ${appLayoutColor}` }}>
       <ErrorBoundary>
         <RouteMapper
           routeObj={routes}
           suspenseFallback={<SimpleLoader color={appLayoutColor} />}
-          userInfo={mockedUserInfo}
-          drilledProps={{
-            test: "test",
-          }}
+          userInfo={mockedUser}
+          drilledProps={drilledProps}
+          authChecker={checkAuth}
         />
 
         <RenderChecker

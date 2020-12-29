@@ -25,12 +25,12 @@
 
       &.counter {
         padding: 4px 5px;
-        background: #16a316;
+        background: $success;
         border: 2px solid $backgroundColor;
         color: $backgroundColor;
 
         &.initial {
-          background-color: #ad2e2e;
+          background-color: $error;
         }
       }
     }

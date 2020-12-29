@@ -5,9 +5,24 @@ import "./LoginPage.scss";
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
+import LoginForm from "Modules/Auth/Components/LoginForm/LoginForm";
+import { Link, matchPath, useHistory, useLocation } from "react-router-dom";
+import { routePaths } from "Modules/Routing/_Constants/routePaths";
+import { User } from "Modules/Auth/_Interfaces/User";
+import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
+import { setUserToLocalStorage } from "Modules/Auth/mock";
+import { routes } from "Modules/Routing/_Constants/routes";
+import { getAllRoutePaths } from "Modules/Routing/ReactAutoRouting/_Helpers/PathHandlers/getAllRoutePaths";
+import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 
-export default function LoginPage() {
+export default function LoginPage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
+
+  const { pathname } = useLocation();
+  const history = useHistory();
+
+  const setUser: DrilledRouteProps["setUser"] =
+    drilledProps && drilledProps.setUser;
 
   return (
     <section className="loginPage" style={{ border: `4px solid ${pageColor}` }}>
@@ -26,28 +41,32 @@ export default function LoginPage() {
       <div className="content">
         <Container>
           <p>
-            Mauris eget cursus felis, a facilisis ante. Vivamus ac orci eget
-            ligula interdum sodales nec ac quam. Integer cursus mattis
-            vestibulum. Nulla accumsan ante non posuere convallis. Vestibulum
-            eleifend sapien eget eleifend molestie. In nec dolor eu lectus
-            pretium congue sed nec tortor. Cras ac pellentesque lectus. Aenean
-            eu orci eget libero porttitor accumsan sed quis nibh. Morbi vitae
-            sem mollis, commodo justo congue, venenatis lectus. Donec a
-            malesuada sapien, in venenatis nunc. Maecenas vel ultrices lectus.
-            Morbi feugiat faucibus ultricies.
+            No account yet?{" "}
+            <Link to={routePaths.registration}>Go to registration page</Link>
           </p>
 
-          <p>
-            Mauris quis congue odio. Vivamus sagittis justo eget sagittis
-            auctor. Duis lacinia tincidunt semper. Maecenas vel ullamcorper
-            urna. Nulla eros lacus, dapibus in facilisis non, suscipit nec mi.
-            Maecenas nec orci lorem. Suspendisse feugiat imperdiet nisi.
-            Curabitur nec leo tempus sapien convallis convallis et sit amet
-            nisi. Nulla lacus massa, tincidunt ut erat sit amet, fermentum
-            iaculis nisi. Aliquam iaculis porta semper. Quisque in magna non
-            massa lacinia aliquet vestibulum ac mauris. Nullam efficitur euismod
-            tempus.
-          </p>
+          <LoginForm
+            onSubmit={(user: User) => {
+              if (setUser) {
+                // If we are on the /login route as soon as we log in it will be restricted, so the
+                // user is redirected to the home page.
+                const isLoginRoute = !!matchPath(pathname, {
+                  path: getAllRoutePaths(
+                    routes,
+                    routes.dev.children.site.children.login
+                  ),
+                  exact: true,
+                });
+
+                if (isLoginRoute) {
+                  history.push("/");
+                }
+
+                setUser(user);
+                setUserToLocalStorage(user);
+              }
+            }}
+          />
         </Container>
       </div>
     </section>
