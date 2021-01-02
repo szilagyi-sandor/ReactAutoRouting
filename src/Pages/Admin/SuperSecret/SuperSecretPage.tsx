@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./SuperSecretPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { useParams } from "react-router-dom";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
 export default function SuperSecretPage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const { id } = useParams<{ id: string }>();
   const _id = Number.isInteger(+id) ? +id : null;
 
@@ -27,12 +24,6 @@ export default function SuperSecretPage({ drilledProps }: PageProps) {
       <header>
         <Container fluid>
           <h2>Super secret page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Super secret page:"
-          />
         </Container>
       </header>
 

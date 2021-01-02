@@ -19,17 +19,37 @@ html {
       display: flex;
       flex-direction: column;
 
-      > .renderChecker {
-        text-align: center;
-        padding-top: 15px;
-        padding-bottom: 15px;
+      > .customRouteHelper {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        padding: 8px;
+        background: $backgroundColor;
+        animation: appear 0.4s linear;
 
-        > div {
-          font-weight: 700;
+        p {
+          font-size: 14px;
+          margin-bottom: 2px;
+        }
 
-          &.inner {
-            font-weight: 400;
-          }
+        button {
+          padding: 0;
+          font-size: 14px;
+          background: none;
+          color: $color;
+          text-decoration: underline;
+          border: 0;
+        }
+      }
+
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: scale(0.4);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
         }
       }
     }

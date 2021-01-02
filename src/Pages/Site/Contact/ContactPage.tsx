@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./ContactPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
 export default function ContactPage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -23,12 +20,6 @@ export default function ContactPage({ drilledProps }: PageProps) {
       <header>
         <Container>
           <h2>Contact page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Site contact page:"
-          />
         </Container>
       </header>
 

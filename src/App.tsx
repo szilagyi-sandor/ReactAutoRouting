@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./App.scss";
 
 import ErrorBoundary from "Modules/Layout/SmartComponents/ErrorBoundary/ErrorBoundary";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { routes as defaultRoutes } from "Modules/Routing/_Constants/routes";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
@@ -23,8 +22,6 @@ import { getCustomMenuItems } from "Modules/Customization/_Helpers/CustomMenuIte
 import { defaultMenuItems } from "Modules/Customization/_Constants/defaultMenuItems";
 
 function App() {
-  const [number, setNumber] = useState(0);
-
   // This could be useful. Here you can see a way to check which layout will be rendered first,
   // the adminLayout or the siteLayout. Currently we're just logging this out to the console, but could be used
   // to deciede on what color the loader should be.
@@ -81,12 +78,6 @@ function App() {
           userInfo={mockedUser}
           drilledProps={drilledProps}
           authChecker={checkAuth}
-        />
-
-        <RenderChecker
-          number={number}
-          setNumber={(val) => setNumber(val)}
-          label="App"
         />
 
         {customRoutes && (

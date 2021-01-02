@@ -6,7 +6,6 @@ import { ReactComponent as ArrowLeft } from "Assets/Images/Left.svg";
 
 import { DrawerProps } from "./interfaces";
 import { openedStorageName } from "./_Constants/openedStorageName";
-import RenderChecker from "../RenderChecker/RenderChecker";
 
 export default function Drawer({
   color,
@@ -18,7 +17,6 @@ export default function Drawer({
     localStorage.getItem(openedStorageName)
   );
   const [open, setOpen] = useState(false);
-  const [number, setNumber] = useState(0);
 
   let buttonClass = open ? "open" : "";
   if (!alreadyOpened) {
@@ -48,12 +46,6 @@ export default function Drawer({
       </div>
 
       <div className="inner" style={{ borderLeft: borderStyle }}>
-        <RenderChecker
-          number={number}
-          setNumber={(val) => setNumber(val)}
-          label="Drawer:"
-        />
-
         {children}
       </div>
     </div>

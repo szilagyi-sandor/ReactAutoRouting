@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./SiteLayout.scss";
 
@@ -6,7 +6,6 @@ import { Container } from "reactstrap";
 import HorizontalNavbar from "Modules/Layout/Components/Navbars/Horizontal/HorizontalNavbar";
 import { siteLayoutColor } from "./_Constants/siteLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
 import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
@@ -17,8 +16,6 @@ import { clearUserFromLocalStorage } from "Modules/Auth/mock";
 import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 
 export default function SiteLayout({ routeMapperProps }: LayoutProps) {
-  const [number, setNumber] = useState(0);
-
   const userInfo =
     routeMapperProps &&
     routeMapperProps.userInfo &&
@@ -94,8 +91,6 @@ export default function SiteLayout({ routeMapperProps }: LayoutProps) {
           <p className="layoutInfo" style={{ color: _siteLayoutColor }}>
             Site Layout
           </p>
-
-          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
       </footer>
     </section>

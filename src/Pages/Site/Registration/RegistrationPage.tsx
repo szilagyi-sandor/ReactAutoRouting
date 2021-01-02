@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./RegistrationPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { Link } from "react-router-dom";
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import { mockedUsers } from "Modules/Auth/mock";
@@ -13,8 +12,6 @@ import { roles } from "Modules/Auth/_Constants/roles";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
 export default function RegistrationPage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -28,12 +25,6 @@ export default function RegistrationPage({ drilledProps }: PageProps) {
       <header>
         <Container>
           <h2>Registration page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Site registration page:"
-          />
         </Container>
       </header>
 

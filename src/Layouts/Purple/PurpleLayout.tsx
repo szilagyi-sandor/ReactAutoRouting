@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./PurpleLayout.scss";
 
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { purpleLayoutColor } from "./_Constants/purpleLayoutColor";
 import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
 import RouteMapper from "Modules/Routing/ReactAutoRouting/RouteMapper/RouteMapper";
@@ -10,8 +9,6 @@ import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { createPurpleBackground } from "./_Helpers/createPurpleBackground";
 
 export default function PurpleLayout({ routeMapperProps }: LayoutProps) {
-  const [number, setNumber] = useState(0);
-
   const _purpleLayoutColor: string =
     routeMapperProps &&
     routeMapperProps.drilledProps &&
@@ -43,8 +40,6 @@ export default function PurpleLayout({ routeMapperProps }: LayoutProps) {
 
         <div className="layoutInfo" style={{ borderTop: borderStyle }}>
           <p style={{ color: _purpleLayoutColor }}>Purple Layout</p>
-
-          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </div>
       </div>
     </div>

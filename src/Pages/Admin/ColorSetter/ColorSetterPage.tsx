@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./ColorSetterPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 import AppColorsSetterForm from "Modules/Customization/Components/AppColorsSetterForm/AppColorsSetterForm";
 import { setAppColorsToLocalStorage } from "Modules/Customization/_Helpers/AppColorHelpers/setAppColorsToLocalStorage";
@@ -13,8 +12,6 @@ import { defaultAppColors } from "Modules/Customization/_Constants/defaultAppCol
 import { deleteAppColorsFromLocalStorage } from "Modules/Customization/_Helpers/AppColorHelpers/deleteAppColorsFromLocalStorage";
 
 export default function ColorSetterPage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -34,12 +31,6 @@ export default function ColorSetterPage({ drilledProps }: PageProps) {
       <header>
         <Container fluid>
           <h2>Color setter page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Menu setter page:"
-          />
         </Container>
       </header>
 

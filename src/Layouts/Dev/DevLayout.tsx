@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./DevLayout.scss";
 
 import { devLayoutColor } from "./_Constants/devLayoutColor";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { Container } from "reactstrap";
 import Drawer from "Modules/Layout/Components/Drawer/Drawer";
 import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
@@ -13,8 +12,6 @@ import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 
 // TODO: Display the JSON in the drawer in a better way (openable, better styled, etc...).
 export default function DevLayout({ routeMapperProps }: LayoutProps) {
-  const [number, setNumber] = useState(0);
-
   const _devLayoutColor: string =
     routeMapperProps &&
     routeMapperProps.drilledProps &&
@@ -62,8 +59,6 @@ export default function DevLayout({ routeMapperProps }: LayoutProps) {
           <p className="layoutInfo" style={{ color: _devLayoutColor }}>
             Dev Layout
           </p>
-
-          <RenderChecker number={number} setNumber={(val) => setNumber(val)} />
         </Container>
       </footer>
     </section>

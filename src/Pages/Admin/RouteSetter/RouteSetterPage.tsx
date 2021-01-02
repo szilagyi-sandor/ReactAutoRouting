@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./RouteSetterPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 import RouteSetterForm from "Modules/Customization/Components/RouteSetterForm/RouteSetterForm";
@@ -15,8 +14,6 @@ import { processRoutes } from "Modules/Routing/ReactAutoRouting/_Helpers/RouteHa
 import { replaceCustomRouteComponents } from "Modules/Customization/_Helpers/CustomRouteHelpers/replaceCustomRouteComponents";
 
 export default function RouteSetterPage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -33,12 +30,6 @@ export default function RouteSetterPage({ drilledProps }: PageProps) {
       <header>
         <Container fluid>
           <h2>Route setter page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Route setter page:"
-          />
         </Container>
       </header>
 

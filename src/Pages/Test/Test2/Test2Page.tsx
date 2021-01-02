@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./Test2Page.scss";
 
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
 export default function Test2Page({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -23,12 +20,6 @@ export default function Test2Page({ drilledProps }: PageProps) {
       <header>
         <Container>
           <h2>Test 2</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Test 2 page:"
-          />
         </Container>
       </header>
 

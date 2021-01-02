@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./AdminHomePage.scss";
 
 import { Container } from "reactstrap";
 import { pageColor } from "Pages/_Constants/pageColor";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
 export default function AdminHomePage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -23,12 +20,6 @@ export default function AdminHomePage({ drilledProps }: PageProps) {
       <header>
         <Container fluid>
           <h2>Admin Home page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Admin home page:"
-          />
         </Container>
       </header>
 

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./AdminLayout.scss";
 
 import { Container } from "reactstrap";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { adminLayoutColor } from "./_Constants/adminLayoutColor";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import VerticalNavbar from "Modules/Layout/Components/Navbars/Vertical/VerticalNavbar";
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import { LayoutProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/LayoutProps";
@@ -17,8 +16,6 @@ import { clearUserFromLocalStorage } from "Modules/Auth/mock";
 import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 
 export default function AdminLayout({ routeMapperProps }: LayoutProps) {
-  const [number, setNumber] = useState(0);
-
   const userInfo =
     routeMapperProps &&
     routeMapperProps.userInfo &&
@@ -103,11 +100,6 @@ export default function AdminLayout({ routeMapperProps }: LayoutProps) {
               <p className="layoutInfo" style={{ color: _adminLayoutColor }}>
                 Admin Layout
               </p>
-
-              <RenderChecker
-                number={number}
-                setNumber={(val) => setNumber(val)}
-              />
             </Container>
           </footer>
         </div>

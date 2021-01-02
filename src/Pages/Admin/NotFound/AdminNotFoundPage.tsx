@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./AdminNotFoundPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { Container } from "reactstrap";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 
 export default function AdminNotFoundPage({ drilledProps }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const _pageColor: string =
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
@@ -23,12 +20,6 @@ export default function AdminNotFoundPage({ drilledProps }: PageProps) {
       <header>
         <Container fluid>
           <h2>Admin not found page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Admin not found page:"
-          />
         </Container>
       </header>
 

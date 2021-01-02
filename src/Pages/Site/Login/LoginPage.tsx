@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./LoginPage.scss";
 
 import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
-import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import LoginForm from "Modules/Auth/Components/LoginForm/LoginForm";
 import { Link, useHistory } from "react-router-dom";
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
@@ -15,8 +14,6 @@ import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
 import { checkAuth } from "Modules/Auth/_Helpers/checkAuth";
 
 export default function LoginPage({ drilledProps, route }: PageProps) {
-  const [number, setNumber] = useState(0);
-
   const history = useHistory();
 
   const setUser: DrilledRouteProps["setUser"] | undefined =
@@ -35,12 +32,6 @@ export default function LoginPage({ drilledProps, route }: PageProps) {
       <header>
         <Container>
           <h2>Login page</h2>
-
-          <RenderChecker
-            number={number}
-            setNumber={(val) => setNumber(val)}
-            label="Site login page:"
-          />
         </Container>
       </header>
 

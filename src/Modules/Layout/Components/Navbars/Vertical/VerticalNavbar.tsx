@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./VerticalNavbar.scss";
 
@@ -6,7 +6,6 @@ import DefaultUserImgUrl from "Assets/Images/User.svg";
 
 import { VerticalNavbarProps } from "./interfaces";
 import { NavLink } from "react-router-dom";
-import RenderChecker from "../../RenderChecker/RenderChecker";
 
 export default function VerticalNavbar({
   items,
@@ -15,8 +14,6 @@ export default function VerticalNavbar({
   userInfo,
   onLogout,
 }: VerticalNavbarProps) {
-  const [number, setNumber] = useState(0);
-
   return (
     <div className="verticalNavbar">
       <nav>
@@ -64,12 +61,6 @@ export default function VerticalNavbar({
           })}
         </ul>
       </nav>
-
-      <RenderChecker
-        number={number}
-        setNumber={(val) => setNumber(val)}
-        label="Navbar:"
-      />
     </div>
   );
 }

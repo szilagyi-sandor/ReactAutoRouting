@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./HorizontalNavbar.scss";
 
@@ -7,7 +7,6 @@ import DefaultUserImgUrl from "Assets/Images/User.svg";
 import { HorizontalNavbarProps } from "./interfaces";
 import { Container, Nav, Navbar, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import RenderChecker from "../../RenderChecker/RenderChecker";
 
 export default function HorizontalNavbar({
   items,
@@ -16,18 +15,8 @@ export default function HorizontalNavbar({
   userInfo,
   onLogout,
 }: HorizontalNavbarProps) {
-  const [number, setNumber] = useState(0);
-
   return (
     <div className="horizontalNavbar">
-      <Container>
-        <RenderChecker
-          number={number}
-          setNumber={(val) => setNumber(val)}
-          label="Navbar:"
-        />
-      </Container>
-
       <Container>
         <Navbar expand="md">
           {navbarBrand && (
