@@ -1,4 +1,4 @@
-import { AppColors } from "_Interfaces/AppColors";
+import { AppColors } from "Modules/Customization/_Interfaces/AppColors";
 import { adminLayoutColor } from "Layouts/Admin/_Constants/adminLayoutColor";
 import { devLayoutColor } from "Layouts/Dev/_Constants/devLayoutColor";
 import { purpleLayoutColor } from "Layouts/Purple/_Constants/purpleLayoutColor";

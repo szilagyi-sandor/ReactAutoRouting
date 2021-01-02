@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./AppColorsSetterForm.scss";
 
-import { AppColors } from "_Interfaces/AppColors";
+import { AppColors } from "Modules/Customization/_Interfaces/AppColors";
 import { AppColorsSetterFormProps } from "./interfaces";
 import { getAppColorNameByKey } from "Modules/Customization/_Helpers/AppColorHelpers/getAppColorNameByKey";
 

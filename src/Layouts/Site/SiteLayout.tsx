@@ -4,7 +4,6 @@ import "./SiteLayout.scss";
 
 import { Container } from "reactstrap";
 import HorizontalNavbar from "Modules/Layout/Components/Navbars/Horizontal/HorizontalNavbar";
-import { siteNavItems } from "./_Constants/siteNavItems";
 import { siteLayoutColor } from "./_Constants/siteLayoutColor";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
@@ -43,6 +42,11 @@ export default function SiteLayout({ routeMapperProps }: LayoutProps) {
     routeMapperProps.drilledProps &&
     routeMapperProps.drilledProps.setUser;
 
+  const menuItems: DrilledRouteProps["menuItems"] | undefined =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.menuItems;
+
   const _siteLayoutColor: string =
     routeMapperProps &&
     routeMapperProps.drilledProps &&
@@ -59,7 +63,9 @@ export default function SiteLayout({ routeMapperProps }: LayoutProps) {
       <header style={{ borderBottom: `4px solid ${_siteLayoutColor}` }}>
         <HorizontalNavbar
           color={_siteLayoutColor}
-          items={filterRestrictedNavItems(siteNavItems, userInfo)}
+          items={
+            menuItems ? filterRestrictedNavItems(menuItems.site, userInfo) : []
+          }
           navbarBrand={{
             text: "ReactAutoRouting",
             url: routePaths.home,

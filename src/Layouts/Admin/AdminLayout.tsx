@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./AdminLayout.scss";
 
 import { Container } from "reactstrap";
-import { adminNavItems } from "./_Constants/adminNavItems";
 import SimpleLoader from "Modules/Layout/Components/SimpleLoader/SimpleLoader";
 import { adminLayoutColor } from "./_Constants/adminLayoutColor";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
@@ -43,6 +42,11 @@ export default function AdminLayout({ routeMapperProps }: LayoutProps) {
     routeMapperProps.drilledProps &&
     routeMapperProps.drilledProps.setUser;
 
+  const menuItems: DrilledRouteProps["menuItems"] | undefined =
+    routeMapperProps &&
+    routeMapperProps.drilledProps &&
+    routeMapperProps.drilledProps.menuItems;
+
   const _adminLayoutColor: string =
     routeMapperProps &&
     routeMapperProps.drilledProps &&
@@ -59,7 +63,11 @@ export default function AdminLayout({ routeMapperProps }: LayoutProps) {
       <header>
         <div className="scrollHelper">
           <VerticalNavbar
-            items={filterRestrictedNavItems(adminNavItems, userInfo)}
+            items={
+              menuItems
+                ? filterRestrictedNavItems(menuItems.admin, userInfo)
+                : []
+            }
             color={_adminLayoutColor}
             navbarBrand={{
               text: "Admin",

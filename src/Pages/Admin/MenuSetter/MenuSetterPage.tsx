@@ -6,6 +6,11 @@ import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
+import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
+import MenuItemsSetterForm from "Modules/Customization/Components/MenuItemsSetterForm/MenuItemsSetterForm";
+import { setMenuItemsToLocalStorage } from "Modules/Customization/_Helpers/CustomMenuItems/setMenuItemsToLocalStorage";
+import { defaultMenuItems } from "Modules/Customization/_Constants/defaultMenuItems";
+import { deleteMenuItemsFromLocalStorage } from "Modules/Customization/_Helpers/CustomMenuItems/deleteMenuItemsFromLocalStorage";
 
 export default function MenuSetterPage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
@@ -14,6 +19,12 @@ export default function MenuSetterPage({ drilledProps }: PageProps) {
     drilledProps && drilledProps.appColors && drilledProps.appColors.page
       ? drilledProps.appColors.page
       : pageColor;
+
+  const setMenuItems: DrilledRouteProps["setMenuItems"] | undefined =
+    drilledProps && drilledProps.setMenuItems;
+
+  const menuItems: DrilledRouteProps["menuItems"] | undefined =
+    drilledProps && drilledProps.menuItems;
 
   return (
     <section
@@ -34,29 +45,21 @@ export default function MenuSetterPage({ drilledProps }: PageProps) {
 
       <div className="content">
         <Container fluid>
-          <p>
-            Mauris eget cursus felis, a facilisis ante. Vivamus ac orci eget
-            ligula interdum sodales nec ac quam. Integer cursus mattis
-            vestibulum. Nulla accumsan ante non posuere convallis. Vestibulum
-            eleifend sapien eget eleifend molestie. In nec dolor eu lectus
-            pretium congue sed nec tortor. Cras ac pellentesque lectus. Aenean
-            eu orci eget libero porttitor accumsan sed quis nibh. Morbi vitae
-            sem mollis, commodo justo congue, venenatis lectus. Donec a
-            malesuada sapien, in venenatis nunc. Maecenas vel ultrices lectus.
-            Morbi feugiat faucibus ultricies.
-          </p>
+          {setMenuItems && menuItems && (
+            <MenuItemsSetterForm
+              menuItems={menuItems}
+              setMenuItems={(menuItems) => {
+                if (menuItems) {
+                  setMenuItems(menuItems);
+                  setMenuItemsToLocalStorage(menuItems);
+                  return;
+                }
 
-          <p>
-            Mauris quis congue odio. Vivamus sagittis justo eget sagittis
-            auctor. Duis lacinia tincidunt semper. Maecenas vel ullamcorper
-            urna. Nulla eros lacus, dapibus in facilisis non, suscipit nec mi.
-            Maecenas nec orci lorem. Suspendisse feugiat imperdiet nisi.
-            Curabitur nec leo tempus sapien convallis convallis et sit amet
-            nisi. Nulla lacus massa, tincidunt ut erat sit amet, fermentum
-            iaculis nisi. Aliquam iaculis porta semper. Quisque in magna non
-            massa lacinia aliquet vestibulum ac mauris. Nullam efficitur euismod
-            tempus.
-          </p>
+                setMenuItems(defaultMenuItems);
+                deleteMenuItemsFromLocalStorage();
+              }}
+            />
+          )}
         </Container>
       </div>
     </section>

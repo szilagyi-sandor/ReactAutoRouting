@@ -19,6 +19,8 @@ import { processRoutes } from "Modules/Routing/ReactAutoRouting/_Helpers/RouteHa
 import { replaceCustomRouteComponents } from "Modules/Customization/_Helpers/CustomRouteHelpers/replaceCustomRouteComponents";
 import { defaultAppColors } from "Modules/Customization/_Constants/defaultAppColors";
 import { deleteCustomRoutesFromLocalStorage } from "Modules/Customization/_Helpers/CustomRouteHelpers/deleteCustomRoutesFromLocalStorage";
+import { getCustomMenuItems } from "Modules/Customization/_Helpers/CustomMenuItems/getCustomMenuItems";
+import { defaultMenuItems } from "Modules/Customization/_Constants/defaultMenuItems";
 
 function App() {
   const [number, setNumber] = useState(0);
@@ -54,6 +56,11 @@ function App() {
   const initialAppColors = customAppColors ? customAppColors : defaultAppColors;
   const [appColors, setAppColors] = useState(initialAppColors);
 
+  // MenuItems.
+  const customMenuItems = getCustomMenuItems();
+  const initialMenuItems = customMenuItems ? customMenuItems : defaultMenuItems;
+  const [menuItems, setMenuItems] = useState(initialMenuItems);
+
   const drilledProps: DrilledRouteProps = {
     user: mockedUser,
     setUser: setMockedUser,
@@ -61,6 +68,8 @@ function App() {
     setAppColors,
     routes,
     setRoutes,
+    menuItems,
+    setMenuItems,
   };
 
   return (

@@ -1,0 +1,65 @@
+@import "Assets/Scss/Variables";
+
+.menuItemSetting {
+  background: $secondaryBackgroundColor;
+  width: 500px;
+  max-width: 100%;
+  border: 2px solid $color;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  padding: 10px;
+
+  .btnWrapper {
+    text-align: right;
+    margin-bottom: 5px;
+
+    button {
+      font-size: 14px;
+      padding: 2px 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .inputWrapper {
+    margin-bottom: 10px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 4px 6px;
+      border-radius: 5px;
+      border: 1px solid $secondaryBackgroundColor;
+    }
+
+    &.select {
+      select {
+        padding: 7px 6px;
+      }
+    }
+
+    &.checkbox {
+      label {
+        display: flex;
+        align-items: center;
+
+        input {
+          width: unset;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
