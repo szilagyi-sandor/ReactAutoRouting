@@ -5,6 +5,10 @@ import { generatePath } from "react-router-dom";
 
 export const adminNavItems: NavItem[] = [
   {
+    text: "Color settings",
+    url: routePaths.colorSetter,
+  },
+  {
     text: "Route settings",
     url: routePaths.routeSetter,
   },

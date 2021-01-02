@@ -21,6 +21,7 @@ export const getAppColorNameByKey = (key: keyof AppColors) => {
       return "Site layout color";
 
     default:
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const check: never = key;
       return "Unknown";
   }

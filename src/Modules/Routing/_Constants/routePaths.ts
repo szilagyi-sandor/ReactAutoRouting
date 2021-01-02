@@ -9,6 +9,7 @@ const {
   routeSetter,
   menuSetter,
   superSecret,
+  colorSetter,
 } = admin.children;
 
 export const routePaths = createRoutePathObject(routes, {
@@ -22,4 +23,5 @@ export const routePaths = createRoutePathObject(routes, {
   api,
   registration,
   login,
+  colorSetter,
 });

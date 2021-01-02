@@ -12,10 +12,10 @@ export const mockedUsers = [
   },
   {
     id: 2,
-    name: "Admin Abbigael",
+    name: "Admin Amy",
     role: roles.admin.id,
-    username: "adminAbbigael",
-    password: "adminAbbigael",
+    username: "adminAmy",
+    password: "adminAmy",
   },
   {
     id: 3,

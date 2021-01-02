@@ -4,8 +4,7 @@ import "./AppColorsSetterForm.scss";
 
 import { AppColors } from "_Interfaces/AppColors";
 import { AppColorsSetterFormProps } from "./interfaces";
-import { getAppColorNameByKey } from "_Helpers/AppColorHelpers/getAppColorNameByKey";
-import { defaultAppColors } from "_Constants/defaultAppColors";
+import { getAppColorNameByKey } from "Modules/Customization/_Helpers/AppColorHelpers/getAppColorNameByKey";
 
 export default function AppColorsSetterForm({
   appColors,
@@ -22,8 +21,7 @@ export default function AppColorsSetterForm({
       className="appColorsSetterForm"
       onSubmit={(e) => {
         e.preventDefault();
-        setAppColors(defaultAppColors);
-
+        setAppColors(undefined);
         setRerenderCounter(rerenderCounter + 1);
       }}
     >

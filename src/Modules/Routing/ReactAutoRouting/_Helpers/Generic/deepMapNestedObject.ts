@@ -13,7 +13,7 @@ export const deepMapNestedObject = <T extends NestableObject<T>>(
 
     mapperFunc(item, currentSelector, currentIndexes);
 
-    if (item.children) {
+    if (item.children && typeof item.children === "object") {
       deepMapNestedObject(
         item.children,
         mapperFunc,

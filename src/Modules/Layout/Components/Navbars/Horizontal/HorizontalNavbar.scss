@@ -62,7 +62,7 @@
       img {
         width: 40px;
         height: 40px;
-        border: 2px solid #fff;
+        border: 2px solid $color;
         border-radius: 20px;
         display: block;
         margin: 0 auto;
@@ -82,7 +82,7 @@
         border: 0;
         padding: 0;
         background: none;
-        color: #fff;
+        color: $color;
         font-size: 14px;
         padding: 0 5px;
         text-decoration: underline;

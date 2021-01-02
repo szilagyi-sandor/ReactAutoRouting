@@ -1,15 +1,11 @@
 import { AuthRule } from "Modules/Routing/ReactAutoRouting/_Interfaces/Auth/AuthRule";
-import { LazyExoticComponent } from "react";
-import { LayoutProps } from "../PropHelpers/LayoutProps";
 import { NestableObject } from "../Generic/NestableObject";
-import { PageProps } from "../PropHelpers/PageProps";
+import { RouteComponent } from "./RouteComponent";
 
 // Having a routeBase gives more flexibility. Forexample It's useful,
 // for a function that wants to remove Component Property on each Route.
 export interface RouteBase<T> extends NestableObject<T> {
-  Component: LazyExoticComponent<
-    (props: LayoutProps | PageProps) => JSX.Element | null
-  >;
+  Component: RouteComponent;
   // Will be concatenated when the last Route in the chain
   // is rendered.
   documentTitle?: string;

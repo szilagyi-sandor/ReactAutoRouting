@@ -27,6 +27,12 @@ export const unprocessedRoutes = createRoutes({
             paths: [""],
           },
 
+          colorSetter: {
+            Component: lazyPages.ColorSetter,
+            documentTitle: "Color settings",
+            paths: ["/color-settings", "/colors"],
+          },
+
           routeSetter: {
             Component: lazyPages.RouteSetter,
             documentTitle: "Route settings",

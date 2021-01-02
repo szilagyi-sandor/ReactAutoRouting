@@ -6,19 +6,17 @@ import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import LoginForm from "Modules/Auth/Components/LoginForm/LoginForm";
-import { Link, matchPath, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { routePaths } from "Modules/Routing/_Constants/routePaths";
 import { User } from "Modules/Auth/_Interfaces/User";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
 import { setUserToLocalStorage } from "Modules/Auth/mock";
-import { routes } from "Modules/Routing/_Constants/routes";
-import { getAllRoutePaths } from "Modules/Routing/ReactAutoRouting/_Helpers/PathHandlers/getAllRoutePaths";
 import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
+import { checkAuth } from "Modules/Auth/_Helpers/checkAuth";
 
-export default function LoginPage({ drilledProps }: PageProps) {
+export default function LoginPage({ drilledProps, route }: PageProps) {
   const [number, setNumber] = useState(0);
 
-  const { pathname } = useLocation();
   const history = useHistory();
 
   const setUser: DrilledRouteProps["setUser"] | undefined =
@@ -56,17 +54,11 @@ export default function LoginPage({ drilledProps }: PageProps) {
           <LoginForm
             onSubmit={(user: User) => {
               if (setUser) {
-                // If we are on the /login route as soon as we log in it will be restricted, so the
-                // user is redirected to the home page.
-                const isLoginRoute = !!matchPath(pathname, {
-                  path: getAllRoutePaths(
-                    routes,
-                    routes.dev.children.site.children.login
-                  ),
-                  exact: true,
-                });
+                if (route.authRule && !checkAuth(route.authRule, user)) {
+                  console.log(
+                    'The route was restricted for a logged in user, so we redirected to "/"'
+                  );
 
-                if (isLoginRoute) {
                   history.push("/");
                 }
 

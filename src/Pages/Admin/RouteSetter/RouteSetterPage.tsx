@@ -6,9 +6,13 @@ import { pageColor } from "Pages/_Constants/pageColor";
 import { Container } from "reactstrap";
 import RenderChecker from "Modules/Layout/Components/RenderChecker/RenderChecker";
 import { PageProps } from "Modules/Routing/ReactAutoRouting/_Interfaces/PropHelpers/PageProps";
-import AppColorsSetterForm from "Modules/Customization/Components/AppColorsSetterForm/AppColorsSetterForm";
 import { DrilledRouteProps } from "_Interfaces/DrilledRouteProps";
-import { setAppColorsToLocalStorage } from "_Helpers/AppColorHelpers/setAppColorsToLocalStorage";
+import RouteSetterForm from "Modules/Customization/Components/RouteSetterForm/RouteSetterForm";
+import { setCustomRoutesToLocalStorage } from "Modules/Customization/_Helpers/CustomRouteHelpers/setCustomRoutesToLocalStorage";
+import { routes as defaultRoutes } from "Modules/Routing/_Constants/routes";
+import { deleteCustomRoutesFromLocalStorage } from "Modules/Customization/_Helpers/CustomRouteHelpers/deleteCustomRoutesFromLocalStorage";
+import { processRoutes } from "Modules/Routing/ReactAutoRouting/_Helpers/RouteHandlers/processRoutes";
+import { replaceCustomRouteComponents } from "Modules/Customization/_Helpers/CustomRouteHelpers/replaceCustomRouteComponents";
 
 export default function RouteSetterPage({ drilledProps }: PageProps) {
   const [number, setNumber] = useState(0);
@@ -18,11 +22,8 @@ export default function RouteSetterPage({ drilledProps }: PageProps) {
       ? drilledProps.appColors.page
       : pageColor;
 
-  const setAppColors: DrilledRouteProps["setAppColors"] | undefined =
-    drilledProps && drilledProps.setAppColors;
-
-  const appColors: DrilledRouteProps["appColors"] | undefined =
-    drilledProps && drilledProps.appColors;
+  const setRoutes: DrilledRouteProps["setRoutes"] | undefined =
+    drilledProps && drilledProps.setRoutes;
 
   return (
     <section
@@ -42,27 +43,28 @@ export default function RouteSetterPage({ drilledProps }: PageProps) {
       </header>
 
       <div className="content">
-        <section className="appColorSetter">
-          <header>
-            <Container fluid>
-              <h3>App color settings</h3>
-            </Container>
-          </header>
+        <Container fluid>
+          {setRoutes && (
+            <RouteSetterForm
+              setRoutes={(storedRoutes) => {
+                if (storedRoutes) {
+                  setCustomRoutesToLocalStorage(storedRoutes);
 
-          <div className="content">
-            <Container fluid>
-              {appColors && setAppColors && (
-                <AppColorsSetterForm
-                  appColors={appColors}
-                  setAppColors={(appColors) => {
-                    setAppColors(appColors);
-                    setAppColorsToLocalStorage(appColors);
-                  }}
-                />
-              )}
-            </Container>
-          </div>
-        </section>
+                  const processedRoutes = processRoutes(
+                    replaceCustomRouteComponents(storedRoutes)
+                  );
+
+                  setRoutes(processedRoutes);
+
+                  return;
+                }
+
+                setRoutes(defaultRoutes);
+                deleteCustomRoutesFromLocalStorage();
+              }}
+            />
+          )}
+        </Container>
       </div>
     </section>
   );
