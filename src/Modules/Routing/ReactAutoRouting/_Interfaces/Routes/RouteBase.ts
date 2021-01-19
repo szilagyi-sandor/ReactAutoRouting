@@ -1,4 +1,4 @@
-import { AuthRule } from "Modules/Routing/ReactAutoRouting/_Interfaces/Auth/AuthRule";
+import { AuthRule } from "../Auth/AuthRule";
 import { NestableObject } from "../Generic/NestableObject";
 import { RouteComponent } from "./RouteComponent";
 

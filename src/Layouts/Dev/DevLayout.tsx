@@ -26,7 +26,7 @@ export default function DevLayout({ routeMapperProps }: LayoutProps) {
       style={{ border: `4px solid ${_devLayoutColor}` }}
     >
       <header>
-        <h1 className="sr-only">ReactAutoRouting </h1>
+        <h1 className="srOnly">ReactAutoRouting </h1>
       </header>
 
       <div className="content">

@@ -8,7 +8,7 @@ export default function SimpleLoader({ loading, color }: SimpleLoaderProps) {
   return loading !== false ? (
     <div className="simpleLoader">
       <div className="indicator" style={{ backgroundColor: color }}>
-        <span className="sr-only">loading</span>
+        <span className="srOnly">loading</span>
       </div>
     </div>
   ) : null;
