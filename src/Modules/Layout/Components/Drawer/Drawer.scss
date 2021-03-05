@@ -19,6 +19,7 @@
   > .btnWrapper {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 
     > button {
       pointer-events: auto;

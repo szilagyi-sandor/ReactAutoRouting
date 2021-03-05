@@ -18,10 +18,10 @@ export const handleAuthMessage = (
       return "Your current role does not have access to the requested resource.";
 
     case handledAuthTypes.acceptedRoles:
-      return "Your current role is not accepted for the requested resource";
+      return "Your current role is not accepted for the requested resource.";
 
     case handledAuthTypes.excludedRoles:
-      return "Your current role is not accepted for the requested resource";
+      return "Your current role is not accepted for the requested resource.";
 
     default:
       return _fallback;

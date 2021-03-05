@@ -1,7 +1,7 @@
-import ErrorPage from "Pages/Common/Error/ErrorPage";
 import React, { Component, ErrorInfo } from "react";
 
 import { ErrorBoundaryState } from "./interfaces";
+import ErrorPage from "Pages/Common/Error/ErrorPage";
 
 export default class ErrorBoundary extends Component<{}, ErrorBoundaryState> {
   state: ErrorBoundaryState = {
